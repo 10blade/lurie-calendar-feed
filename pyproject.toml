@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lurie-calendar-feed"
+version = "0.1.0"
+description = "Generate an unofficial iCalendar feed for Lurie Cancer Center professional education events."
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [{ name = "10blade" }]
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "httpx>=0.27.2",
+  "pypdf>=5.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+  "ruff>=0.8.0",
+]
+
+[project.scripts]
+lurie-calendar = "lurie_calendar.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["lurie_calendar"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["lurie_calendar", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
