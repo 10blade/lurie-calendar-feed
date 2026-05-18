@@ -1,0 +1,221 @@
+[
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/head-neck/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/HN2022-opportunities.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/HN2022-opportunities.pdf",
+    "raw_source_excerpt": "HTML:\nLurie Cancer Center Multidisciplinary Head & Neck Symposium\nn in the treatment and care of head and neck cancer patients. 2022 Presentation Slides Event Details December 2-3, 2022 December 2, 2022 | 7:45 a.m. - 5:15 p.m. December 3, 2022 | 8:00 a.m. - 3:15 p.m. Prentice Women's Hospital 250 E. Superior St., Chicago\nDecember 2-3, 2022 December 2, 2022 | 7:45 a.m. - 5:15 p.m.\n\nPDF:\nLURIE CANCER CENTER\nwill cover the most relevant topics related to head and neck cancers. Exhibit & Sponsorship Information Packet, as of August 15, 2022 December 2-3, 2022 | Prentice Women\u2019s Hospital, Chicago Exhibit Booth Exibit Fee $7,000 1 Exhibit table (6\u2019 x 30\u201d) 2 O\nDISPLAY HOURS 7:00 AM - 3:45 PM (Breakfast, Lunch, and Breaks)",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Lurie Cancer Center Multidisciplinary Head & Neck Symposium"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/m3/index.html",
+    "payload": {
+      "pdf_url": "https://lcc.northwestern.edu/mail/2024/flyers/2024-09-19-m3-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://lcc.northwestern.edu/mail/2024/flyers/2024-09-19-m3-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nMidwest Metabolism Meeting (M3)\ntern University : Feinberg School of Medicine Skip to main content Midwest Metabolism Meeting (M3) Join us in person On Thursday, September 19, 2024, the Robert H. Lurie Cancer Center will host the Midwest Metabolism Meeting (M3), a symposium that aims to facilitate t\n9:00 a.m. - 5:05 p.m. - Program 5:30 p.m. - 7:30 p.m. - Reception\n\nPDF:\n8:00 a.m. Check-in and Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Check-in and Breakfast 9:00 a.m. Opening Remarks\nMidwest Metabolism Meeting (M3) Thursday, September 19, 2024 \u2022 8:00 a.m. - 5:05 p.m.",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Midwest Metabolism Meeting (M3)"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/m3/index.html",
+    "payload": {
+      "pdf_url": "https://lcc.northwestern.edu/mail/2024/flyers/2024-09-19-m3-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://lcc.northwestern.edu/mail/2024/flyers/2024-09-19-m3-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nMidwest Metabolism Meeting (M3)\ntern University : Feinberg School of Medicine Skip to main content Midwest Metabolism Meeting (M3) Join us in person On Thursday, September 19, 2024, the Robert H. Lurie Cancer Center will host the Midwest Metabolism Meeting (M3), a symposium that aims to facilitate t\n9:00 a.m. - 5:05 p.m. - Program 5:30 p.m. - 7:30 p.m. - Reception\n\nPDF:\n8:00 a.m. Check-in and Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Check-in and Breakfast 9:00 a.m. Opening Remarks\nMidwest Metabolism Meeting (M3) Thursday, September 19, 2024 \u2022 8:00 a.m. - 5:05 p.m.",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Midwest Metabolism Meeting (M3)"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/nursing/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2025/nursing2025.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2025/nursing2025.pdf",
+    "raw_source_excerpt": "HTML:\nOncology Nursing Conference\nCancer Center of Northwestern University : Feinberg School of Medicine Skip to main content Oncology Nursing Conference November 21, 2025 Register now for November 21 On Friday, November 21, the Robert H. Lurie Comprehensive Cancer Center of Northwestern Un\nFriday, November 21, 2025 8:30 a.m. \u2013 9:00 a.m.\n\nPDF:\n8:30 a.m. Check-in & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:30 a.m. Check-in & Breakfast 9:00 a.m. Opening Remarks",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Oncology Nursing Conference"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/nursing/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2025/nursing2025.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2025/nursing2025.pdf",
+    "raw_source_excerpt": "HTML:\nOncology Nursing Conference\nCancer Center of Northwestern University : Feinberg School of Medicine Skip to main content Oncology Nursing Conference November 21, 2025 Register now for November 21 On Friday, November 21, the Robert H. Lurie Comprehensive Cancer Center of Northwestern Un\nFriday, November 21, 2025 8:30 a.m. \u2013 9:00 a.m.\n\nPDF:\n8:30 a.m. Check-in & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:30 a.m. Check-in & Breakfast 9:00 a.m. Opening Remarks",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Oncology Nursing Conference"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/nursing/oncology-nursing-discovery-program.html",
+    "payload": {},
+    "pdf_sha256": null,
+    "pdf_url": null,
+    "raw_source_excerpt": "Oncology Nursing Discovery Program\nrsing Program Details Complimentary conference registration for the Lurie Cancer Center\u2019s Pain & Palliative Conference (June 20, 2019) and Oncology Nursing Conference (November 22, 2019) Complimentary onsite parking during conferences Guided tour of hos",
+    "reason": "Could not confidently parse required title/date/time",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Oncology Nursing Discovery Program"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/oncology-review/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/oncreview2026-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/oncreview2026-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nOncology Review Symposium\noncology and hematology disease types, and each topic is presented by an expert in the respective field. Event Details Friday, July 17, 2026 Breakfast & Exhibits: 8:00 a.m. - 9:00 a.m. Program: 9:00 a.m. - 5:10 p.m. Agenda Northwestern Memorial Hospital Feinbe\nBreakfast & Exhibits: 8:00 a.m. - 9:00 a.m. Program: 9:00 a.m. - 5:10 p.m.\n\nPDF:\n9:00 a.m. Welcome & Opening Remarks\nst Cancer Update William Gradishar, MD 5:05 p.m. Closing Remarks & Evaluations 5:10 p.m. Adjourn 2026 ONCOLOGY REVIEW Friday, July 17, 2026 | Northwestern Memorial Hospital, Feinberg Pavilion, 3rd Floor cancer.northwestern.edu/oncology-review",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Oncology Review Symposium"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/oncoset/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Oncoset2026-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Oncoset2026-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nPeering Over The Horizon: The Future of Targeted Therapies\nine Skip to main content Peering Over The Horizon: The Future of Targeted Therapies 2026 OncoSET Symposium Register for March 6, 2026 On Friday, March 6, the Lurie Cancer Center OncoSET program will hold its annual symposium on new advances in precision\nFriday, March 6, 2026 8:00 a.m. - 9:00 a.m.\n\nPDF:\n8:00 a.m. Registration, Exhibits, & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Registration, Exhibits, & Breakfast 9:00 a.m. We",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Peering Over The Horizon: The Future of Targeted Therapies"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/oncoset/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Oncoset2026-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Oncoset2026-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nPeering Over The Horizon: The Future of Targeted Therapies\nine Skip to main content Peering Over The Horizon: The Future of Targeted Therapies 2026 OncoSET Symposium Register for March 6, 2026 On Friday, March 6, the Lurie Cancer Center OncoSET program will hold its annual symposium on new advances in precision\nFriday, March 6, 2026 8:00 a.m. - 9:00 a.m.\n\nPDF:\n8:00 a.m. Registration, Exhibits, & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Registration, Exhibits, & Breakfast 9:00 a.m. We",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Peering Over The Horizon: The Future of Targeted Therapies"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/pain/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Pain2026-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Pain2026-agenda.pdf",
+    "raw_source_excerpt": "HTML:\n20th Annual Pain & Palliative Care Conference\nnberg School of Medicine Skip to main content 20th Annual Pain & Palliative Care Conference Register now for June 16 On Tuesday, June 16, 2026 the 20th Annual Pain & Palliative Care Conference will bring together physicians, nurses, social workers, physical ther\nProgram: 8:50 a.m. - 3:30 p.m. Central Time\n\nPDF:\n8:00 a.m. Registration & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Registration & Breakfast 8:50 a.m. Welcome & Ope",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "20th Annual Pain & Palliative Care Conference"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/pain/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Pain2026-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Pain2026-agenda.pdf",
+    "raw_source_excerpt": "HTML:\n20th Annual Pain & Palliative Care Conference\nnberg School of Medicine Skip to main content 20th Annual Pain & Palliative Care Conference Register now for June 16 On Tuesday, June 16, 2026 the 20th Annual Pain & Palliative Care Conference will bring together physicians, nurses, social workers, physical ther\nProgram: 8:50 a.m. - 3:30 p.m. Central Time\n\nPDF:\n8:00 a.m. Registration & Breakfast\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Registration & Breakfast 8:50 a.m. Welcome & Ope",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "20th Annual Pain & Palliative Care Conference"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/research/index.html",
+    "payload": {
+      "pdf_url": "https://lcc.northwestern.edu/mail/2025/flyers/2025-12-17-crc-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://lcc.northwestern.edu/mail/2025/flyers/2025-12-17-crc-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nClinical Research Course\nberg School of Medicine Skip to main content Clinical Research Course Register now for December 17 Join us in person On Wednesday, December 17, 2025, all clinical cancer researchers and trainees are invited to join us for an educational event providing valuable insigh\nWednesday, December 17, 2025 8:00 a.m. \u2013 8:30 a.m.\n\nPDF:\n8:00 a.m. Check-in\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Check-in 8:30 a.m. Welcome Remarks and How to De\nClinical Research Course Wednesday, December 17, 2025 \u2022 8:30 a.m. - 11:30 a.m.",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Clinical Research Course"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/research/index.html",
+    "payload": {
+      "pdf_url": "https://lcc.northwestern.edu/mail/2025/flyers/2025-12-17-crc-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://lcc.northwestern.edu/mail/2025/flyers/2025-12-17-crc-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nClinical Research Course\nberg School of Medicine Skip to main content Clinical Research Course Register now for December 17 Join us in person On Wednesday, December 17, 2025, all clinical cancer researchers and trainees are invited to join us for an educational event providing valuable insigh\nWednesday, December 17, 2025 8:00 a.m. \u2013 8:30 a.m.\n\nPDF:\n8:00 a.m. Check-in\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium 8:00 a.m. Check-in 8:30 a.m. Welcome Remarks and How to De\nClinical Research Course Wednesday, December 17, 2025 \u2022 8:30 a.m. - 11:30 a.m.",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Clinical Research Course"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/survivorship-symposium/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Survivorship2026.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Survivorship2026.pdf",
+    "raw_source_excerpt": "HTML:\nCancer Survivorship Symposium\nrecision Cancer Survivorship: Shaping the Future of Personalized Care Register now for May 1 Join us online via Zoom On Friday, May 1, 2026, the Cancer Survivorship Symposium will convene researchers, clinicians, and healthcare professionals to explore strate\nFriday, May 1, 2026 8:30 a.m. \u2013 8:45 a.m. CST\n\nPDF:\nAll speakers are a part of the Robert H. Lurie Comprehensive\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium All speakers are a part of the Robert H. Lurie Comprehensi",
+    "reason": "PDF date conflicts with webpage date",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Cancer Survivorship Symposium"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/survivorship-symposium/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Survivorship2026.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2026/Survivorship2026.pdf",
+    "raw_source_excerpt": "HTML:\nCancer Survivorship Symposium\nrecision Cancer Survivorship: Shaping the Future of Personalized Care Register now for May 1 Join us online via Zoom On Friday, May 1, 2026, the Cancer Survivorship Symposium will convene researchers, clinicians, and healthcare professionals to explore strate\nFriday, May 1, 2026 8:30 a.m. \u2013 8:45 a.m. CST\n\nPDF:\nAll speakers are a part of the Robert H. Lurie Comprehensive\nJune 20, 2019 | Robert H. Lurie Medical Research Center, Hughes Auditorium All speakers are a part of the Robert H. Lurie Comprehensi",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Cancer Survivorship Symposium"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/trim/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2024/TRIM2024-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2024/TRIM2024-agenda.pdf",
+    "raw_source_excerpt": "HTML:\nTranslational Research in Malignancies Symposium\nicine Skip to main content Translational Research in Malignancies Symposium Register now for May 3 Join us in person On Friday, May 3, 2024 , the Robert H. Lurie Comprehensive Cancer Center of Northwestern University will host the Translational Research in Ma\nFriday, May 3, 2024 8:00 a.m. \u2013 9:00 p.m.\n\nPDF:\n2024 TRANSLATIONAL RESEARCH IN MALIGNANCIES SYMPOSIUM:\n2024 TRANSLATIONAL RESEARCH IN MALIGNANCIES SYMPOSIUM: Resistance to Cancer Treatment Friday, May 3, 2024 | 8:00 a.m. - 12:15 p.m. Central Time Simpson Querrey Biomedical Research Center, SQBRC Auditorium, 303 E. Superior St.\nResistance to Cancer Treatment Friday, May 3, 2024 | 8:00 a.m. - 12:15 p.m. Central Time",
+    "reason": "PDF time conflicts with webpage time",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "Translational Research in Malignancies Symposium"
+  },
+  {
+    "detail_url": "https://www.cancer.northwestern.edu/events/professional/trist/index.html",
+    "payload": {
+      "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/TRIST2022-agenda.pdf"
+    },
+    "pdf_sha256": null,
+    "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/TRIST2022-agenda.pdf",
+    "raw_source_excerpt": "HTML:\n2022 TRIST Symposium\nsity : Feinberg School of Medicine Skip to main content Lurie Cancer Center Professional Events 2022 TRIST Symposium On Friday, May 13, 2022, the Translational Research in Solid Tumors (TRIST) Program of the Robert H. Lurie Comprehensive Cancer Center of North\nFriday, May 13 Program: 9:00 a.m. - 12:00 p.m.\n\nPDF:\nPHASE 1: SUPERIOR STREET LOOKING EAST \u2013 PROPOSED DESIGN\nHASE 1: SUPERIOR STREET LOOKING EAST \u2013 PROPOSED DESIGN 2022 TRIST SYMPOSIUM: Drug Development from Bench to Bedside Friday, May 13, 2022 | 9:00 a.m. - 12:00 p.m. Central Time Robert H. Lurie Medical Research Center, Baldwin Auditorium, 303 E. Superior St.,\nDrug Development from Bench to Bedside Friday, May 13, 2022 | 9:00 a.m. - 12:00 p.m. Central Time",
+    "reason": "PDF title conflicts with webpage title",
+    "scraped_at": "2026-05-18T03:11:38.991334Z",
+    "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
+    "title": "2022 TRIST Symposium"
+  }
+]
