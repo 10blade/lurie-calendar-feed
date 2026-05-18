@@ -163,12 +163,10 @@ def update_command(args: argparse.Namespace) -> int:
 
         pdf_discovery[detail.detail_url] = detail.pdf_urls
         pdf_documents = []
-        pdf_failed = False
         for pdf_url in detail.pdf_urls:
             try:
                 pdf_documents.append(download_and_extract_pdf(client, pdf_url, cache_dir=cache_dir))
             except (httpx.HTTPError, PdfExtractionError, ValueError) as exc:
-                pdf_failed = True
                 parser_log.append(
                     {
                         "url": detail.detail_url,
@@ -188,8 +186,6 @@ def update_command(args: argparse.Namespace) -> int:
                         raw_source_excerpt=str(exc),
                     )
                 )
-        if pdf_failed:
-            continue
 
         result = parse_event(detail, pdf_documents, now=now, days_ahead=args.days_ahead)
         reviews.extend(result.reviews)
@@ -220,18 +216,19 @@ def update_command(args: argparse.Namespace) -> int:
     write_json(artifacts_dir / "parser_log.json", parser_log)
     if not parsed_events:
         errors.append("Source pages loaded, but zero future professional events were parsed.")
-        write_json(data_dir / "review_required.json", [review_to_json(item) for item in reviews])
-        write_markdown(
-            logs_dir / "last_run_summary.md",
-            run_summary(
-                run_time=now,
-                discovered_count=len(links),
-                published_count=0,
-                review_count=len(reviews),
-                skipped_count=skipped_count,
-                errors=errors,
-            ),
+        failure_summary = run_summary(
+            run_time=now,
+            discovered_count=len(links),
+            published_count=0,
+            review_count=len(reviews),
+            skipped_count=skipped_count,
+            errors=errors,
         )
+        write_json(data_dir / "review_required.json", [review_to_json(item) for item in reviews])
+        write_markdown(logs_dir / "last_run_summary.md", failure_summary)
+        print(failure_summary, file=sys.stderr)
+        for item in parser_log[-20:]:
+            print(json.dumps(item, sort_keys=True), file=sys.stderr)
         (artifacts_dir / "parser_failure.txt").write_text("\n".join(errors), encoding="utf-8")
         return 3
 

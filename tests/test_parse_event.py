@@ -35,6 +35,21 @@ def test_parse_professional_event() -> None:
     assert not result.reviews
 
 
+def test_parse_prefers_program_time_when_schedule_is_inline() -> None:
+    text = (
+        "Oncology Review Symposium\n"
+        "Join us for professional education and oncology review research.\n"
+        "Friday, July 17, 2026\n"
+        "Breakfast & Exhibits: 8:00 a.m. - 9:00 a.m. Program: 9:00 a.m. - 5:10 p.m.\n"
+        "Target Audience\n"
+        "Medical, surgical, and radiation oncologists; scientists and healthcare professionals."
+    )
+    result = parse_event(make_detail(text), [], now=NOW, days_ahead=180)
+
+    assert result.event is not None
+    assert result.event.start_datetime.isoformat().startswith("2026-07-17T09:00:00")
+
+
 def test_parse_excludes_public_patient_event() -> None:
     text = (FIXTURES / "public_event.txt").read_text(encoding="utf-8")
     detail = make_detail(

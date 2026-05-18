@@ -167,18 +167,16 @@ def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
         if index + 1 < len(lines):
             contexts.append(f"{line} {lines[index + 1]}")
         for context in contexts:
-            match = TIME_RANGE_RE.search(context)
-            if not match:
-                continue
-            end_ampm = _normal_ampm(match.group("eampm"))
-            start_ampm = _normal_ampm(match.group("sampm")) or end_ampm
-            start = _to_time(match.group("sh"), match.group("sm"), start_ampm)
-            end = _to_time(match.group("eh"), match.group("em"), end_ampm)
-            if end <= start and match.group("sampm") is None and end_ampm == "pm":
-                start = _to_time(match.group("sh"), match.group("sm"), "am")
-            label = _label_for_time_match(lines, index, context, match)
-            score = _time_candidate_score(label, context)
-            candidates.append((score, start, end, context))
+            for match in TIME_RANGE_RE.finditer(context):
+                end_ampm = _normal_ampm(match.group("eampm"))
+                start_ampm = _normal_ampm(match.group("sampm")) or end_ampm
+                start = _to_time(match.group("sh"), match.group("sm"), start_ampm)
+                end = _to_time(match.group("eh"), match.group("em"), end_ampm)
+                if end <= start and match.group("sampm") is None and end_ampm == "pm":
+                    start = _to_time(match.group("sh"), match.group("sm"), "am")
+                label = _label_for_time_match(lines, index, context, match)
+                score = _time_candidate_score(label, context)
+                candidates.append((score, start, end, context))
     if not candidates:
         return None, None, ""
     candidates.sort(key=lambda item: item[0], reverse=True)
@@ -414,7 +412,7 @@ def _check_conflicts(
                     )
                 )
         if html_evidence.start_time and pdf_evidence.start_time:
-            if (
+            if _pdf_time_conflict_is_reliable(pdf_evidence) and (
                 html_evidence.start_time != pdf_evidence.start_time
                 or html_evidence.end_time != pdf_evidence.end_time
             ):
@@ -438,6 +436,31 @@ def _check_conflicts(
                 )
             )
     return reviews
+
+
+def _pdf_time_conflict_is_reliable(pdf_evidence: Evidence) -> bool:
+    excerpt = pdf_evidence.excerpt.lower()
+    explicit_event_time_labels = (
+        "event time",
+        "program:",
+        "symposium:",
+        "conference:",
+        "lecture:",
+        "seminar:",
+        "grand rounds:",
+    )
+    excluded_agenda_item_labels = (
+        "breakfast",
+        "registration",
+        "exhibits",
+        "reception",
+        "poster",
+        "award",
+        "break",
+    )
+    return any(label in excerpt for label in explicit_event_time_labels) and not any(
+        label in excerpt for label in excluded_agenda_item_labels
+    )
 
 
 def parse_event(
