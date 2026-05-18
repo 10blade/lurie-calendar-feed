@@ -79,6 +79,13 @@ class Evidence:
     excerpt: str
 
 
+@dataclass(frozen=True)
+class DateCandidate:
+    value: date
+    excerpt: str
+    score: int
+
+
 @dataclass
 class ParseResult:
     event: ParsedEvent | None
@@ -102,7 +109,19 @@ def _month_number(name: str) -> int:
     return datetime.strptime(name[:3], "%b").month
 
 
-def _extract_date(text: str) -> tuple[date | None, str]:
+def _preferred_year_from_url(source_url: str) -> int | None:
+    match = re.search(r"\b(20\d{2})\b", source_url)
+    if match:
+        return int(match.group(1))
+    return None
+
+
+def _date_candidates(
+    text: str,
+    preferred_year: int | None,
+    fallback_title: str | None,
+) -> list[DateCandidate]:
+    candidates: list[DateCandidate] = []
     for match in DATE_RE.finditer(text):
         excerpt = _excerpt_around(text, match)
         if "©" in excerpt or "copyright" in excerpt.lower():
@@ -112,8 +131,49 @@ def _extract_date(text: str) -> tuple[date | None, str]:
             _month_number(match.group("month")),
             int(match.group("day")),
         )
-        return value, excerpt
-    return None, ""
+        score = 0
+        if preferred_year and value.year == preferred_year:
+            score += 10
+        if fallback_title:
+            score += 2 * len(_tokens(fallback_title) & _tokens(excerpt))
+        if value.year < 2024:
+            score -= 5
+        candidates.append(DateCandidate(value=value, excerpt=excerpt, score=score))
+    return candidates
+
+
+def _extract_date(
+    text: str,
+    preferred_year: int | None = None,
+    fallback_title: str | None = None,
+) -> tuple[date | None, str]:
+    candidates = _date_candidates(text, preferred_year, fallback_title)
+    if not candidates:
+        return None, ""
+    candidates.sort(key=lambda candidate: candidate.score, reverse=True)
+    best = candidates[0]
+    return best.value, best.excerpt
+
+
+def _text_contains_title_tokens(text: str, fallback_title: str | None) -> bool:
+    title_tokens = _tokens(fallback_title)
+    if not title_tokens:
+        return False
+    text_tokens = _tokens(text)
+    overlap = len(title_tokens & text_tokens) / max(len(title_tokens), 1)
+    return overlap >= 0.5
+
+
+def _evidence_title(
+    text: str,
+    source_name: str,
+    fallback_title: str | None,
+) -> str | None:
+    if source_name == "html" and fallback_title:
+        return fallback_title
+    if source_name == "pdf" and _text_contains_title_tokens(text, fallback_title):
+        return fallback_title
+    return _title_from_text(text, fallback_title)
 
 
 def _normal_ampm(value: str | None) -> str | None:
@@ -244,9 +304,13 @@ def _title_from_text(text: str, fallback: str | None = None) -> str | None:
 
 
 def extract_evidence(text: str, source_name: str, source_url: str, fallback_title: str | None) -> Evidence:
-    event_date, date_excerpt = _extract_date(text)
+    event_date, date_excerpt = _extract_date(
+        text,
+        preferred_year=_preferred_year_from_url(source_url),
+        fallback_title=fallback_title,
+    )
     start_time, end_time, time_excerpt = _extract_time_range(text)
-    title = fallback_title if source_name == "html" and fallback_title else _title_from_text(text, fallback_title)
+    title = _evidence_title(text, source_name, fallback_title)
     excerpt = "\n".join(part for part in (title or "", date_excerpt, time_excerpt) if part)
     return Evidence(
         source_name=source_name,

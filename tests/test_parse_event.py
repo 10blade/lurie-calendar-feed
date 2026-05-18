@@ -108,3 +108,27 @@ def test_pdf_conflicting_date_requires_review() -> None:
     assert result.event is None
     assert result.reviews
     assert "conflicts" in result.reviews[0].reason
+
+
+def test_pdf_evidence_uses_pdf_year_when_template_contains_old_date() -> None:
+    text = (FIXTURES / "professional_event.txt").read_text(encoding="utf-8")
+    pdf = PdfDocument(
+        source_url="https://www.cancer.northwestern.edu/docs/event-docs/2026/oncreview2026-agenda.pdf",
+        final_url="https://www.cancer.northwestern.edu/docs/event-docs/2026/oncreview2026-agenda.pdf",
+        sha256="abc",
+        text=(
+            "June 20, 2019 | Robert H. Lurie Medical Research Center\n"
+            "2026 ONCOLOGY REVIEW\n"
+            "Friday, July 17, 2026 | Northwestern Memorial Hospital\n"
+            "9:00 a.m. Welcome & Opening Remarks\n"
+            "5:10 p.m. Adjourn\n"
+        ),
+        extractable_text=True,
+        size_bytes=100,
+        content_type="application/pdf",
+    )
+
+    result = parse_event(make_detail(text), [pdf], now=NOW, days_ahead=180)
+
+    assert result.event is not None
+    assert result.event.title == "Oncology Review Symposium"
