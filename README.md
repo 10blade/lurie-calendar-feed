@@ -8,6 +8,8 @@ The generated calendar is published from `docs/lurie-professional-events.ics`.
 
 Residents, fellows and students in Chicago area, Welcome to subscribe to the ics calendar; Calendar updates daily
 
+# ics link here: https://10blade.github.io/lurie-calendar-feed/lurie-professional-events.ics
+
 ## Run Locally
 
 1. Install Python 3.13.
