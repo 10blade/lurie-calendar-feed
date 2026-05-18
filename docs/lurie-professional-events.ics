@@ -24,9 +24,34 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
+UID:62c054e4-ece5-596e-aefb-f25319c7583e@lurie-calendar-feed.github.io
+DTSTAMP:20260518T034637Z
+LAST-MODIFIED:20260518T034637Z
+SEQUENCE:0
+STATUS:CONFIRMED
+DTSTART;TZID=America/Chicago:20260616T085000
+DTEND;TZID=America/Chicago:20260616T153000
+SUMMARY:Lurie: 20th Annual Pain & Palliative Care Conference
+DESCRIPTION:20th Annual Pain & Palliative Care Conference\n\nSeries: 20th A
+ nnual Pain & Palliative Care Conference\nSpeaker: Medical Aid in Dying in 
+ Illinois\nTopic: Medical Aid in Dying in Illinois\nSource: https://www.can
+ cer.northwestern.edu/events/professional/pain/index.html\nPDF: https://www
+ .cancer.northwestern.edu/docs/event-docs/2026/Pain2026-agenda.pdf\nRegistr
+ ation: https://lcc.northwestern.edu/registrations/pain\nScraped: 2026-05-1
+ 8T03:46:37.532546+00:00\nSource URL: https://www.cancer.northwestern.edu/e
+ vents/professional/pain/index.html\nPDF URL: https://www.cancer.northweste
+ rn.edu/docs/event-docs/2026/Pain2026-agenda.pdf\nPDF SHA256: 7fd51fd76b2b3
+ fd62e808fe743d9e79b815895e0d943c36378ac9db7ee69c832\nRegistration URL: htt
+ ps://lcc.northwestern.edu/registrations/pain\nScraped at: 2026-05-18T03:46
+ :37.532546+00:00
+LOCATION:Feinberg Pavilion\, 3rd Floor Conference Center\, Northwestern Mem
+ orial Hospital\, 251 East Huron\, Chicago\, (or virtual)
+URL:https://www.cancer.northwestern.edu/events/professional/pain/index.html
+END:VEVENT
+BEGIN:VEVENT
 UID:8c9d31c6-7d56-5532-8de3-23202e5201a4@lurie-calendar-feed.github.io
-DTSTAMP:20260518T033221Z
-LAST-MODIFIED:20260518T033221Z
+DTSTAMP:20260518T034637Z
+LAST-MODIFIED:20260518T034637Z
 SEQUENCE:1
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20260618T140000
@@ -38,16 +63,43 @@ DESCRIPTION:Lurie Cancer Center Symposium & Scientific Poster Session\n\nSe
  rce: https://www.cancer.northwestern.edu/events/professional/symposium/ind
  ex.html\nPDF: https://www.cancer.northwestern.edu/docs/event-docs/2026/lcc
  symposium2026-agenda.pdf\nRegistration: https://lcc.northwestern.edu/regis
- trations2/lccsymposium2026/\nScraped: 2026-05-18T03:32:21.320922+00:00\nSo
+ trations2/lccsymposium2026/\nScraped: 2026-05-18T03:46:37.532546+00:00\nSo
  urce URL: https://www.cancer.northwestern.edu/events/professional/symposiu
  m/index.html\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs
  /2026/lccsymposium2026-agenda.pdf\nPDF SHA256: 26b3247a141317a5b42cace5ae3
  db071cf557f77aef15179cd40235697e6dd53\nRegistration URL: https://lcc.north
- western.edu/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:32
- :21.320922+00:00
+ western.edu/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:46
+ :37.532546+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Hughes Auditorium
 URL:https://www.cancer.northwestern.edu/events/professional/symposium/index
  .html
+END:VEVENT
+BEGIN:VEVENT
+UID:a75c298e-9e8d-547a-975a-0c2220061fd1@lurie-calendar-feed.github.io
+DTSTAMP:20260518T034637Z
+LAST-MODIFIED:20260518T034637Z
+SEQUENCE:0
+STATUS:CONFIRMED
+DTSTART;TZID=America/Chicago:20260717T090000
+DTEND;TZID=America/Chicago:20260717T171000
+SUMMARY:Lurie Oncology Review: Topics & Speakers
+DESCRIPTION:Oncology Review Symposium\n\nSeries: Oncology Review\nSpeaker: 
+ William Gradishar\, MD\; Patricia Robinson\, MD\; Sunandana Chandra\, MD\,
+  MS\nTopic: Topics & Speakers\nSource: https://www.cancer.northwestern.edu
+ /events/professional/oncology-review/index.html\nPDF: https://www.cancer.n
+ orthwestern.edu/docs/event-docs/2026/oncreview2026-agenda.pdf\nRegistratio
+ n: https://northwestern.cloud-cme.com/course/courseoverview?P=0&EID=125327
+ &formID=708\nScraped: 2026-05-18T03:46:37.532546+00:00\nSource URL: https:
+ //www.cancer.northwestern.edu/events/professional/oncology-review/index.ht
+ ml\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs/2026/oncr
+ eview2026-agenda.pdf\nPDF SHA256: bbd7daf63614e1ccafe8b00c114a890590d9230d
+ 9134b4ed9c87b32a5584765e\nRegistration URL: https://northwestern.cloud-cme
+ .com/course/courseoverview?P=0&EID=125327&formID=708\nScraped at: 2026-05-
+ 18T03:46:37.532546+00:00
+LOCATION:Northwestern Memorial Hospital\, Feinberg Pavilion\, 3rd Floor Con
+ ference Center\, 251 E. Huron St.\, Chicago
+URL:https://www.cancer.northwestern.edu/events/professional/oncology-review
+ /index.html
 END:VEVENT
 END:VCALENDAR
