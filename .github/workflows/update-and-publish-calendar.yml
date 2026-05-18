@@ -3,8 +3,8 @@ name: Update and publish calendar
 on:
   workflow_dispatch:
   schedule:
-    - cron: "37 13 * * 3"
-    - cron: "37 14 * * 3"
+    - cron: "37 13 * * 1-5"
+    - cron: "37 14 * * 1-5"
 
 permissions:
   contents: write
