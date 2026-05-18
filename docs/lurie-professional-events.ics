@@ -25,8 +25,8 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:8c9d31c6-7d56-5532-8de3-23202e5201a4@lurie-calendar-feed.github.io
-DTSTAMP:20260518T031805Z
-LAST-MODIFIED:20260518T031805Z
+DTSTAMP:20260518T032339Z
+LAST-MODIFIED:20260518T032339Z
 SEQUENCE:0
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20260618T140000
@@ -39,13 +39,13 @@ DESCRIPTION:Lurie Cancer Center Symposium  & Scientific Poster Session\n\nS
  Source: https://www.cancer.northwestern.edu/events/professional/symposium/
  index.html\nPDF: https://www.cancer.northwestern.edu/docs/event-docs/2026/
  lccsymposium2026-agenda.pdf\nRegistration: https://lcc.northwestern.edu/re
- gistrations2/lccsymposium2026/\nScraped: 2026-05-18T03:18:05.935494+00:00\
+ gistrations2/lccsymposium2026/\nScraped: 2026-05-18T03:23:39.805624+00:00\
  nSource URL: https://www.cancer.northwestern.edu/sitemap.xml\nDetail URL: 
  https://www.cancer.northwestern.edu/events/professional/symposium/index.ht
  ml\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs/2026/lccs
  ymposium2026-agenda.pdf\nPDF SHA256: 26b3247a141317a5b42cace5ae3db071cf557
  f77aef15179cd40235697e6dd53\nRegistration URL: https://lcc.northwestern.ed
- u/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:18:05.935494
+ u/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:23:39.805624
  +00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Hughes Auditorium\, Symposium:
