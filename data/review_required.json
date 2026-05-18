@@ -1,5 +1,27 @@
 [
   {
+    "detail_url": "https://lynnsagebreastcancer.org/",
+    "payload": {},
+    "pdf_sha256": null,
+    "pdf_url": null,
+    "raw_source_excerpt": "October 1 - 4, 2026\nSource calendar: Lurie Cancer Center professional events feed Series: Lurie Cancer Center Professional Education Events Thursday, October 1, 2026 Speaker: Chair: William Gradishar, MD, Northwestern University Feinberg School of Medicine Location: Radisson Blu Aqua",
+    "reason": "Could not confidently parse required title/date/time",
+    "scraped_at": "2026-05-18T04:05:26.537418Z",
+    "source_url": "https://www.cancer.northwestern.edu/events/getEvents.php?q=lcc-e-professional",
+    "title": "October 1 - 4, 2026"
+  },
+  {
+    "detail_url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-05-18-BigTen.pdf",
+    "payload": {},
+    "pdf_sha256": null,
+    "pdf_url": null,
+    "raw_source_excerpt": "An Introduction to the Big Ten Cancer Research Consortium\nrch Consortium Source calendar: Lurie Cancer Center professional events feed Series: Big Ten Cancer Research Consortium Monday, May 18, 2026 Speaker: Jonathan Ang, MBA, Randy Dillinger, and Mark Burkard, MD, PhD, Big Ten CRC Location: Virtual\n\nAn Introduction to the Big Ten Cancer Research Consortium\nVIRTUAL SEMINAR An Introduction to the Big Ten CRC Monday, May 18, 2026 2:00 PM ET / 1:00 PM CT / 11:00 AM PT Overview This free, virtual seminar will introduce attendees to the Big Ten Ca",
+    "reason": "Could not confidently parse required title/date/time",
+    "scraped_at": "2026-05-18T04:05:26.537418Z",
+    "source_url": "https://www.cancer.northwestern.edu/events/getEvents.php?q=lcc-e-professional",
+    "title": "An Introduction to the Big Ten Cancer Research Consortium"
+  },
+  {
     "detail_url": "https://www.cancer.northwestern.edu/events/professional/head-neck/index.html",
     "payload": {
       "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/HN2022-opportunities.pdf"
@@ -8,7 +30,7 @@
     "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2022/HN2022-opportunities.pdf",
     "raw_source_excerpt": "HTML:\nLurie Cancer Center Multidisciplinary Head & Neck Symposium\nn in the treatment and care of head and neck cancer patients. 2022 Presentation Slides Event Details December 2-3, 2022 December 2, 2022 | 7:45 a.m. - 5:15 p.m. December 3, 2022 | 8:00 a.m. - 3:15 p.m. Prentice Women's Hospital 250 E. Superior St., Chicago\nDecember 2-3, 2022 December 2, 2022 | 7:45 a.m. - 5:15 p.m.\n\nPDF:\nLurie Cancer Center Multidisciplinary Head & Neck Symposium\nwill cover the most relevant topics related to head and neck cancers. Exhibit & Sponsorship Information Packet, as of August 15, 2022 December 2-3, 2022 | Prentice Women\u2019s Hospital, Chicago Exhibit Booth Exibit Fee $7,000 1 Exhibit table (6\u2019 x 30\u201d) 2 O\nDISPLAY HOURS 7:00 AM - 3:45 PM",
     "reason": "PDF date conflicts with webpage date",
-    "scraped_at": "2026-05-18T03:46:37.532546Z",
+    "scraped_at": "2026-05-18T04:05:26.537418Z",
     "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
     "title": "Lurie Cancer Center Multidisciplinary Head & Neck Symposium"
   },
@@ -19,7 +41,7 @@
     "pdf_url": null,
     "raw_source_excerpt": "Oncology Nursing Discovery Program\nrsing Program Details Complimentary conference registration for the Lurie Cancer Center\u2019s Pain & Palliative Conference (June 20, 2019) and Oncology Nursing Conference (November 22, 2019) Complimentary onsite parking during conferences Guided tour of hos",
     "reason": "Could not confidently parse required title/date/time",
-    "scraped_at": "2026-05-18T03:46:37.532546Z",
+    "scraped_at": "2026-05-18T04:05:26.537418Z",
     "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
     "title": "Oncology Nursing Discovery Program"
   },
@@ -32,7 +54,7 @@
     "pdf_url": "https://www.cancer.northwestern.edu/docs/event-docs/2024/TRIM2024-agenda.pdf",
     "raw_source_excerpt": "HTML:\nTranslational Research in Malignancies Symposium\nicine Skip to main content Translational Research in Malignancies Symposium Register now for May 3 Join us in person On Friday, May 3, 2024 , the Robert H. Lurie Comprehensive Cancer Center of Northwestern University will host the Translational Research in Ma\nFriday, May 3, 2024 8:00 a.m. \u2013 9:00 p.m.\n\nPDF:\nTranslational Research in Malignancies Symposium\n2024 TRANSLATIONAL RESEARCH IN MALIGNANCIES SYMPOSIUM: Resistance to Cancer Treatment Friday, May 3, 2024 | 8:00 a.m. - 12:15 p.m. Central Time Simpson Querrey Biomedical Research Center, SQBRC Auditorium, 303 E. Superior St.\nResistance to Cancer Treatment Friday, May 3, 2024 | 8:00 a.m. - 12:15 p.m. Central Time",
     "reason": "PDF time conflicts with webpage time",
-    "scraped_at": "2026-05-18T03:46:37.532546Z",
+    "scraped_at": "2026-05-18T04:05:26.537418Z",
     "source_url": "https://www.cancer.northwestern.edu/sitemap.xml",
     "title": "Translational Research in Malignancies Symposium"
   }
