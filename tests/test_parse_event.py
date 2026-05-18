@@ -50,6 +50,35 @@ def test_parse_prefers_program_time_when_schedule_is_inline() -> None:
     assert result.event.start_datetime.isoformat().startswith("2026-07-17T09:00:00")
 
 
+def test_parse_symposium_uses_full_poster_session_window_and_keynote() -> None:
+    text = (
+        "Lurie Cancer Center Symposium & Scientific Poster Session\n"
+        "Join us in person on the Chicago campus!\n"
+        "Event Details\n"
+        "Robert H. Lurie Medical Research Center\n"
+        "303 E. Superior St., Chicago, Hughes Auditorium\n"
+        "Thursday, June 18, 2026\n"
+        "Symposium: 2:00 p.m. - 5:10 p.m. Central Time\n"
+        "Awards Presentation: 5:10 p.m. - 5:30 p.m. Central Time\n"
+        "Reception and Scientific Poster Session: 5:30 p.m. - 6:30 p.m. Central Time\n"
+        "Keynote\n"
+        "Protein Acylation in Cancer and Inflammation\n"
+        "Hening Lin, PhD\n"
+        "James and Karen Frank Family Professor of Medicine\n"
+    )
+    result = parse_event(make_detail(text), [], now=NOW, days_ahead=180)
+
+    assert result.event is not None
+    assert result.event.start_datetime.isoformat().startswith("2026-06-18T14:00:00")
+    assert result.event.end_datetime.isoformat().startswith("2026-06-18T18:30:00")
+    assert result.event.speaker == "Hening Lin, PhD"
+    assert result.event.topic == "Protein Acylation in Cancer and Inflammation"
+    assert result.event.location == (
+        "Robert H. Lurie Medical Research Center, "
+        "303 E. Superior St., Chicago, Hughes Auditorium"
+    )
+
+
 def test_parse_excludes_public_patient_event() -> None:
     text = (FIXTURES / "public_event.txt").read_text(encoding="utf-8")
     detail = make_detail(

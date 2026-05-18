@@ -28,7 +28,7 @@ TIME_RANGE_RE = re.compile(
     re.IGNORECASE,
 )
 SPEAKER_RE = re.compile(
-    r"\b([A-Z][A-Za-z'.-]+(?:\s+[A-Z][A-Za-z'.-]+){1,4},\s*"
+    r"\b([A-Z][A-Za-z'.-]+(?:[ \t]+[A-Z][A-Za-z'.-]+){1,4},[ \t]*"
     r"(?:MD|PhD|DO|RN|MS|MSc|MPH|MBA|DMin|BCC|LCSW)(?:,\s*(?:MD|PhD|DO|RN|MS|MSc|MPH|MBA|DMin|BCC|LCSW))*)"
 )
 
@@ -152,6 +152,15 @@ def _time_candidate_score(label: str, snippet: str) -> int:
     return score
 
 
+@dataclass(frozen=True)
+class TimeCandidate:
+    score: int
+    start: time
+    end: time
+    label: str
+    excerpt: str
+
+
 def _label_for_time_match(
     lines: list[str],
     index: int,
@@ -165,8 +174,8 @@ def _label_for_time_match(
     return lines[index - 1] if index > 0 else ""
 
 
-def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
-    candidates: list[tuple[int, time, time, str]] = []
+def _time_candidates(text: str) -> list[TimeCandidate]:
+    candidates: list[TimeCandidate] = []
     lines = _lines(text)
     for index, line in enumerate(lines):
         contexts = [line]
@@ -184,13 +193,44 @@ def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
                 label = _label_for_time_match(lines, index, context, match, previous_match_end)
                 snippet = f"{label} {match.group(0)}"
                 score = _time_candidate_score(label, snippet)
-                candidates.append((score, start, end, context))
+                candidates.append(TimeCandidate(score, start, end, label, snippet.strip()))
                 previous_match_end = match.end()
+    return candidates
+
+
+def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
+    candidates = _time_candidates(text)
     if not candidates:
         return None, None, ""
-    candidates.sort(key=lambda item: item[0], reverse=True)
-    _, start, end, excerpt = candidates[0]
-    return start, end, excerpt
+    candidates.sort(key=lambda item: item.score, reverse=True)
+    best = candidates[0]
+    return best.start, best.end, best.excerpt
+
+
+def _extend_end_time_for_full_event(title: str, text: str, start: time, end: time) -> time:
+    combined = f"{title}\n{text}".lower()
+    if not any(term in combined for term in ("poster session", "symposium", "conference")):
+        return end
+
+    related_terms = (
+        "symposium",
+        "program",
+        "awards presentation",
+        "reception",
+        "poster session",
+        "scientific poster session",
+    )
+    excluded_terms = ("breakfast", "registration", "exhibits")
+    latest = end
+    for candidate in _time_candidates(text):
+        label = candidate.label.lower()
+        if any(term in label for term in excluded_terms):
+            continue
+        if candidate.start < start:
+            continue
+        if any(term in label for term in related_terms) and candidate.end > latest:
+            latest = candidate.end
+    return latest
 
 
 def _title_from_text(text: str, fallback: str | None = None) -> str | None:
@@ -250,6 +290,9 @@ def _series(title: str, text: str) -> str | None:
 
 
 def _topic(title: str, text: str) -> str | None:
+    keynote_topic = _keynote_topic(text)
+    if keynote_topic:
+        return keynote_topic
     lines = _lines(text)
     title_seen = False
     for line in lines[:30]:
@@ -282,12 +325,33 @@ def _topic(title: str, text: str) -> str | None:
     return title
 
 
+def _keynote_topic(text: str) -> str | None:
+    lines = _lines(text)
+    for index, line in enumerate(lines):
+        if line.lower().strip(":") != "keynote":
+            continue
+        for item in lines[index + 1 : index + 5]:
+            if SPEAKER_RE.search(item):
+                return None
+            if 8 <= len(item) <= 160 and not DATE_RE.search(item) and not TIME_RANGE_RE.search(item):
+                return item
+    return None
+
+
 def _speaker(text: str) -> str | None:
     keynote_match = re.search(r"KEYNOTE:\s*([^\n]+)", text, re.IGNORECASE)
     if keynote_match:
         name = keynote_match.group(1).strip()
         if name:
             return name
+    lines = _lines(text)
+    for index, line in enumerate(lines):
+        if line.lower().strip(":") != "keynote":
+            continue
+        for item in lines[index + 1 : index + 8]:
+            match = SPEAKER_RE.search(item)
+            if match:
+                return match.group(1).strip()
     matches = []
     for match in SPEAKER_RE.finditer(text):
         speaker = match.group(1).strip()
@@ -341,7 +405,19 @@ def _collect_location_lines(lines: list[str]) -> str | None:
     collected: list[str] = []
     for item in lines:
         lower = item.lower()
-        if lower.startswith(("target audience", "topics", "confirmed speakers", "register")):
+        if lower.startswith(
+            (
+                "target audience",
+                "topics",
+                "confirmed speakers",
+                "register",
+                "symposium:",
+                "program:",
+                "awards presentation:",
+                "reception",
+                "poster session:",
+            )
+        ):
             break
         if DATE_RE.search(item) or TIME_RANGE_RE.search(item):
             continue
@@ -531,6 +607,7 @@ def parse_event(
 
     if end_time is None:
         end_time = time(hour=(start_time.hour + 1) % 24, minute=start_time.minute)
+    end_time = _extend_end_time_for_full_event(title, combined_text, start_time, end_time)
 
     start_dt = datetime.combine(event_date, start_time, tzinfo=CHICAGO)
     end_dt = datetime.combine(event_date, end_time, tzinfo=CHICAGO)
@@ -560,6 +637,7 @@ def parse_event(
     confidence = min(confidence, 0.95)
     raw_excerpt = "\n\n".join(item.excerpt for item in evidences if item.excerpt)[:1600]
     pdf_description_line = f"\nPDF: {pdf_used.source_url}" if pdf_used else ""
+    event_source_url = detail.canonical_url or detail.detail_url
 
     description = (
         f"{title}\n\n"
@@ -575,7 +653,7 @@ def parse_event(
     event = ParsedEvent(
         stable_uid=None,
         source_event_id=detail.source_event_id,
-        source_url=detail.source_url,
+        source_url=event_source_url,
         detail_url=detail.detail_url,
         pdf_url=pdf_used.source_url if pdf_used else None,
         pdf_sha256=pdf_used.sha256 if pdf_used else None,

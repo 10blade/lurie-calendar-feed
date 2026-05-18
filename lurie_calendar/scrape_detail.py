@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from html import unescape
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -121,14 +122,18 @@ def extract_canonical_url(soup: BeautifulSoup, base_url: str) -> str | None:
 def extract_title(soup: BeautifulSoup) -> str | None:
     h1 = soup.find("h1")
     if h1:
-        title = h1.get_text(" ", strip=True)
+        title = normalize_display_text(h1.get_text(" ", strip=True))
         if title:
             return title
     title_tag = soup.find("title")
     if not title_tag:
         return None
-    title = title_tag.get_text(" ", strip=True)
+    title = normalize_display_text(title_tag.get_text(" ", strip=True))
     return re.sub(r"\s*:\s*Robert H\..*$", "", title).strip() or None
+
+
+def normalize_display_text(value: str) -> str:
+    return re.sub(r"\s+", " ", unescape(value)).strip()
 
 
 def extract_source_event_id(url: str, soup: BeautifulSoup) -> str | None:
