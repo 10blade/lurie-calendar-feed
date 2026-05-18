@@ -153,6 +153,8 @@ def detail_from_html(
     source_url: str | None = None,
     client: httpx.Client | None = None,
     check_pdf_redirects: bool = True,
+    context_text: str | None = None,
+    context_title: str | None = None,
 ) -> DetailPage:
     soup = BeautifulSoup(html, "html.parser")
     canonical_url = extract_canonical_url(soup, detail_url)
@@ -162,15 +164,18 @@ def detail_from_html(
         client=client,
         check_redirects=check_pdf_redirects,
     )
+    visible_text = extract_visible_text(soup)
+    if context_text:
+        visible_text = f"{context_text}\n\n{visible_text}" if visible_text else context_text
     return DetailPage(
         source_url=source_url or detail_url,
         detail_url=detail_url,
         canonical_url=canonical_url,
-        visible_text=extract_visible_text(soup),
+        visible_text=visible_text,
         pdf_urls=pdf_urls,
         registration_url=discover_registration_url(soup, detail_url),
         html=html,
-        title=extract_title(soup),
+        title=extract_title(soup) or context_title,
         source_event_id=extract_source_event_id(detail_url, soup),
     )
 
@@ -180,7 +185,24 @@ def fetch_detail(
     detail_url: str,
     source_url: str | None = None,
     artifacts_dir: Path | None = None,
+    context_text: str | None = None,
+    context_title: str | None = None,
 ) -> DetailPage:
+    if _is_pdf_url(detail_url):
+        visible_text = context_text or context_title or detail_url
+        write_text_artifact(artifacts_dir, safe_artifact_name(detail_url, ".txt"), visible_text)
+        return DetailPage(
+            source_url=source_url or detail_url,
+            detail_url=detail_url,
+            canonical_url=None,
+            visible_text=visible_text,
+            pdf_urls=[detail_url],
+            registration_url=None,
+            html="",
+            title=context_title,
+            source_event_id=None,
+        )
+
     response = client.get(detail_url)
     response.raise_for_status()
     html = response.text
@@ -191,6 +213,8 @@ def fetch_detail(
         source_url=source_url or detail_url,
         client=client,
         check_pdf_redirects=True,
+        context_text=context_text,
+        context_title=context_title,
     )
     if artifacts_dir is not None:
         write_text_artifact(

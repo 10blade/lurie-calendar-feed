@@ -132,3 +132,46 @@ def test_pdf_evidence_uses_pdf_year_when_template_contains_old_date() -> None:
 
     assert result.event is not None
     assert result.event.title == "Oncology Review Symposium"
+
+
+def test_parse_professional_feed_pdf_row() -> None:
+    detail = DetailPage(
+        source_url="https://www.cancer.northwestern.edu/events/getEvents.php?q=lcc-e-professional",
+        detail_url="https://lcc.northwestern.edu/mail/2026/flyers/2026-05-19-BR-Piunti.pdf",
+        canonical_url=None,
+        visible_text=(
+            "Chromatin Deregulation in Pediatric Cancers\n"
+            "Source calendar: Lurie Cancer Center professional events feed\n"
+            "Series: Lurie Cancer Center Basic Research Seminar\n"
+            "Tuesday, May 19, 2026\n"
+            "Speaker: Andrea Piunti, PhD, University of Chicago\n"
+            "Location:\n"
+            "Robert H. Lurie Medical Research Center Searle Seminar Room"
+        ),
+        pdf_urls=["https://lcc.northwestern.edu/mail/2026/flyers/2026-05-19-BR-Piunti.pdf"],
+        registration_url=None,
+        html="",
+        title="Chromatin Deregulation in Pediatric Cancers",
+    )
+    pdf = PdfDocument(
+        source_url="https://lcc.northwestern.edu/mail/2026/flyers/2026-05-19-BR-Piunti.pdf",
+        final_url="https://lcc.northwestern.edu/mail/2026/flyers/2026-05-19-BR-Piunti.pdf",
+        sha256="abc",
+        text=(
+            "Chromatin Deregulation in Pediatric Cancers\n"
+            "Tuesday, May 19, 2026\n"
+            "Seminar: 11:00 AM - 12:00 PM\n"
+            "Andrea Piunti, PhD, University of Chicago"
+        ),
+        extractable_text=True,
+        size_bytes=100,
+        content_type="application/pdf",
+    )
+
+    result = parse_event(detail, [pdf], now=NOW, days_ahead=180)
+
+    assert result.event is not None
+    assert result.event.title == "Chromatin Deregulation in Pediatric Cancers"
+    assert result.event.series == "Lurie Cancer Center Basic Research Seminar"
+    assert result.event.start_datetime.isoformat().startswith("2026-05-19T11:00:00")
+    assert result.event.speaker == "Andrea Piunti, PhD, University of Chicago"

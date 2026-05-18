@@ -37,6 +37,14 @@ POSITIVE_TERMS = (
     "grand rounds",
     "basic research seminar",
     "seminar series",
+    "speaker series",
+    "team seminar",
+    "research-in-progress",
+    "research in progress",
+    "research consortium",
+    "biochemistry",
+    "molecular genetics",
+    "pathology department",
     "symposium",
     "conference",
     "oncology review",
@@ -329,6 +337,9 @@ def is_professional_event(detail: DetailPage, combined_text: str) -> bool:
     text = f"{detail.title or ''}\n{combined_text}".lower()
     positive_score = sum(1 for term in POSITIVE_TERMS if term in text)
     negative_score = sum(1 for term in NEGATIVE_TERMS if term in text)
+    source_url_lower = detail.source_url.lower()
+    if "getevents.php" in source_url_lower and "lcc-e-professional" in source_url_lower:
+        return negative_score < 2
     if "/events/professional/" in path:
         return negative_score < 3 or positive_score >= 2
     if "/events/public/" in path:
@@ -338,10 +349,23 @@ def is_professional_event(detail: DetailPage, combined_text: str) -> bool:
 
 def _series(title: str, text: str) -> str | None:
     combined = f"{title}\n{text}".lower()
+    for line in _lines(text)[:20]:
+        if line.lower().startswith("series:"):
+            value = line.split(":", 1)[1].strip()
+            if value:
+                return value
     if "grand rounds" in combined:
         return "Grand Rounds"
     if "basic research seminar" in combined:
         return "Basic Research Seminar Series"
+    if "research-in-progress" in combined or "research in progress" in combined:
+        return "Research-In-Progress Seminar Series"
+    if "team seminar" in combined:
+        return "TEAM Seminar"
+    if "speaker series" in combined:
+        return "Speaker Series"
+    if "research consortium" in combined:
+        return "Research Consortium"
     if "seminar series" in combined:
         return "Seminar Series"
     if "oncology review" in combined:
@@ -403,6 +427,11 @@ def _keynote_topic(text: str) -> str | None:
 
 
 def _speaker(text: str) -> str | None:
+    for line in _lines(text)[:30]:
+        if line.lower().startswith("speaker:"):
+            value = line.split(":", 1)[1].strip()
+            if value:
+                return value[:240]
     keynote_match = re.search(r"KEYNOTE:\s*([^\n]+)", text, re.IGNORECASE)
     if keynote_match:
         name = keynote_match.group(1).strip()

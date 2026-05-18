@@ -20,6 +20,8 @@ class DiscoveredLink:
     url: str
     text: str
     source_url: str
+    context_text: str | None = None
+    title: str | None = None
 
 
 @dataclass(frozen=True)

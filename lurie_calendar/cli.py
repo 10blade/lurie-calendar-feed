@@ -155,6 +155,8 @@ def update_command(args: argparse.Namespace) -> int:
                 link.url,
                 source_url=link.source_url,
                 artifacts_dir=artifacts_dir,
+                context_text=link.context_text,
+                context_title=link.title,
             )
         except (httpx.HTTPError, ValueError) as exc:
             reviews.append(_review_for_error("Could not fetch event detail page", link.url, now, exc))

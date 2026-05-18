@@ -14,6 +14,9 @@ import httpx
 from lurie_calendar.models import DiscoveredLink, FetchedPage
 
 SOURCE_CALENDAR_URL = "https://www.cancer.northwestern.edu/events/index.html"
+PROFESSIONAL_EVENTS_FEED_URL = (
+    "https://www.cancer.northwestern.edu/events/getEvents.php?q=lcc-e-professional"
+)
 PROFESSIONAL_EDUCATION_URL = (
     "https://www.cancer.northwestern.edu/research/professional-education-events.html"
 )
@@ -48,6 +51,32 @@ EXCLUDED_TERMS = (
     "mindfulness",
 )
 IGNORED_EXTENSIONS = (".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".css", ".js")
+MONTH_ALIASES = {
+    "jan": "January",
+    "january": "January",
+    "feb": "February",
+    "february": "February",
+    "mar": "March",
+    "march": "March",
+    "apr": "April",
+    "april": "April",
+    "may": "May",
+    "jun": "June",
+    "june": "June",
+    "jul": "July",
+    "july": "July",
+    "aug": "August",
+    "august": "August",
+    "sep": "September",
+    "sept": "September",
+    "september": "September",
+    "oct": "October",
+    "october": "October",
+    "nov": "November",
+    "november": "November",
+    "dec": "December",
+    "december": "December",
+}
 
 
 def build_client(timeout: float = 30.0) -> httpx.Client:
@@ -97,6 +126,14 @@ def normalize_url(url: str, base_url: str) -> str | None:
     return parsed._replace(fragment="").geturl()
 
 
+def absolute_http_url(url: str, base_url: str) -> str | None:
+    absolute = urljoin(base_url, url.strip())
+    parsed = urlparse(absolute)
+    if parsed.scheme not in {"http", "https"}:
+        return None
+    return parsed._replace(fragment="").geturl()
+
+
 def extract_links_from_html(html: str, base_url: str) -> list[DiscoveredLink]:
     soup = BeautifulSoup(html, "html.parser")
     links: list[DiscoveredLink] = []
@@ -109,6 +146,94 @@ def extract_links_from_html(html: str, base_url: str) -> list[DiscoveredLink]:
             continue
         text = tag.get_text(" ", strip=True)
         links.append(DiscoveredLink(url=normalized, text=text, source_url=base_url))
+    return links
+
+
+def _normalized_text(tag: object | None, separator: str = " ") -> str:
+    if tag is None:
+        return ""
+    get_text = getattr(tag, "get_text", None)
+    if get_text is None:
+        return ""
+    return re.sub(r"\s+", " ", get_text(separator, strip=True)).strip()
+
+
+def _month_year_from_heading(value: str) -> tuple[str | None, int | None]:
+    match = re.search(r"\b([A-Za-z]+)\s+(20\d{2})\b", value)
+    if not match:
+        return None, None
+    month = MONTH_ALIASES.get(match.group(1).lower())
+    return month, int(match.group(2))
+
+
+def _date_line(monthday: str, day_label: str, current_month: str | None, year: int | None) -> str:
+    if year is None:
+        return monthday
+    month_match = re.match(r"\s*([A-Za-z]+)\s+(\d{1,2})", monthday)
+    if month_match:
+        month = MONTH_ALIASES.get(month_match.group(1).lower(), month_match.group(1))
+        day = month_match.group(2)
+    else:
+        day_match = re.search(r"\d{1,2}", monthday)
+        if not current_month or not day_match:
+            return monthday
+        month = current_month
+        day = day_match.group(0)
+    day_prefix = day_label.split("-", 1)[0].strip()
+    prefix = f"{day_prefix}, " if day_prefix else ""
+    return f"{prefix}{month} {day}, {year}"
+
+
+def extract_professional_feed_links(html: str, feed_url: str) -> list[DiscoveredLink]:
+    soup = BeautifulSoup(html, "html.parser")
+    current_month: str | None = None
+    current_year: int | None = None
+    links: list[DiscoveredLink] = []
+
+    for element in soup.find_all(["h2", "div"]):
+        if element.name == "h2":
+            current_month, current_year = _month_year_from_heading(element.get_text(" ", strip=True))
+            continue
+        classes = set(element.get("class", []))
+        if "event" not in classes:
+            continue
+
+        anchor = element.select_one(".eventDetail h3 a")
+        if anchor is None or not anchor.get("href"):
+            continue
+        href = absolute_http_url(anchor["href"], feed_url)
+        if href is None:
+            continue
+
+        title = _normalized_text(anchor)
+        series = _normalized_text(element.select_one(".eventDetail label"))
+        speaker = _normalized_text(element.select_one(".eventDetail .subTitle"))
+        location = _normalized_text(element.select_one(".eventLocation"), separator="\n")
+        day_label = _normalized_text(element.select_one(".eventDate .day"))
+        monthday = _normalized_text(element.select_one(".eventDate .monthday"))
+        event_date = _date_line(monthday, day_label, current_month, current_year)
+
+        context_lines = [
+            title,
+            "Source calendar: Lurie Cancer Center professional events feed",
+            f"Series: {series}" if series else "",
+            event_date,
+            f"Speaker: {speaker}" if speaker else "",
+            "Location:" if location else "",
+            location,
+        ]
+        context_text = "\n".join(line for line in context_lines if line)
+        display_parts = [part for part in (event_date, series, title, speaker, location) if part]
+        links.append(
+            DiscoveredLink(
+                url=href,
+                text=" | ".join(display_parts),
+                source_url=feed_url,
+                context_text=context_text,
+                title=title or None,
+            )
+        )
+
     return links
 
 
@@ -215,6 +340,18 @@ def discover_event_links(
         for link in extract_links_from_html(page.text, page.final_url):
             if is_candidate_event_detail(link.url, link.text):
                 discovered.append(link)
+
+    try:
+        feed = fetch_text(client, PROFESSIONAL_EVENTS_FEED_URL)
+        fetched_pages.append(feed.final_url)
+        write_text_artifact(artifacts_dir, safe_artifact_name(PROFESSIONAL_EVENTS_FEED_URL), feed.text)
+        discovered.extend(extract_professional_feed_links(feed.text, feed.final_url))
+    except httpx.HTTPError:
+        write_text_artifact(
+            artifacts_dir,
+            "professional_events_feed_error.txt",
+            f"Could not fetch {PROFESSIONAL_EVENTS_FEED_URL}",
+        )
 
     discovered.extend(discover_sitemap_links(client, artifacts_dir=artifacts_dir))
     unique = _unique_links(discovered)
