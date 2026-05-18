@@ -152,6 +152,13 @@ def _time_candidate_score(label: str, line: str) -> int:
     return score
 
 
+def _label_for_time_match(lines: list[str], index: int, context: str, match: re.Match[str]) -> str:
+    inline_label = context[: match.start()].strip(" :-\t")
+    if inline_label:
+        return inline_label[-80:]
+    return lines[index - 1] if index > 0 else ""
+
+
 def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
     candidates: list[tuple[int, time, time, str]] = []
     lines = _lines(text)
@@ -169,7 +176,7 @@ def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
             end = _to_time(match.group("eh"), match.group("em"), end_ampm)
             if end <= start and match.group("sampm") is None and end_ampm == "pm":
                 start = _to_time(match.group("sh"), match.group("sm"), "am")
-            label = lines[index - 1] if index > 0 else ""
+            label = _label_for_time_match(lines, index, context, match)
             score = _time_candidate_score(label, context)
             candidates.append((score, start, end, context))
     if not candidates:
