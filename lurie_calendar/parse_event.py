@@ -138,8 +138,8 @@ def _to_time(hour_raw: str, minute_raw: str | None, ampm: str | None) -> time:
     return time(hour=hour, minute=minute)
 
 
-def _time_candidate_score(label: str, line: str) -> int:
-    combined = f"{label} {line}".lower()
+def _time_candidate_score(label: str, snippet: str) -> int:
+    combined = f"{label} {snippet}".lower()
     score = 0
     for term in ("program", "symposium", "lecture", "seminar", "grand rounds", "keynote"):
         if term in combined:
@@ -152,8 +152,14 @@ def _time_candidate_score(label: str, line: str) -> int:
     return score
 
 
-def _label_for_time_match(lines: list[str], index: int, context: str, match: re.Match[str]) -> str:
-    inline_label = context[: match.start()].strip(" :-\t")
+def _label_for_time_match(
+    lines: list[str],
+    index: int,
+    context: str,
+    match: re.Match[str],
+    previous_match_end: int,
+) -> str:
+    inline_label = context[previous_match_end : match.start()].strip(" :-\t")
     if inline_label:
         return inline_label[-80:]
     return lines[index - 1] if index > 0 else ""
@@ -167,6 +173,7 @@ def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
         if index + 1 < len(lines):
             contexts.append(f"{line} {lines[index + 1]}")
         for context in contexts:
+            previous_match_end = 0
             for match in TIME_RANGE_RE.finditer(context):
                 end_ampm = _normal_ampm(match.group("eampm"))
                 start_ampm = _normal_ampm(match.group("sampm")) or end_ampm
@@ -174,9 +181,11 @@ def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
                 end = _to_time(match.group("eh"), match.group("em"), end_ampm)
                 if end <= start and match.group("sampm") is None and end_ampm == "pm":
                     start = _to_time(match.group("sh"), match.group("sm"), "am")
-                label = _label_for_time_match(lines, index, context, match)
-                score = _time_candidate_score(label, context)
+                label = _label_for_time_match(lines, index, context, match, previous_match_end)
+                snippet = f"{label} {match.group(0)}"
+                score = _time_candidate_score(label, snippet)
                 candidates.append((score, start, end, context))
+                previous_match_end = match.end()
     if not candidates:
         return None, None, ""
     candidates.sort(key=lambda item: item[0], reverse=True)
