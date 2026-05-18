@@ -25,30 +25,28 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:8c9d31c6-7d56-5532-8de3-23202e5201a4@lurie-calendar-feed.github.io
-DTSTAMP:20260518T032339Z
-LAST-MODIFIED:20260518T032339Z
-SEQUENCE:0
+DTSTAMP:20260518T033221Z
+LAST-MODIFIED:20260518T033221Z
+SEQUENCE:1
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20260618T140000
-DTEND;TZID=America/Chicago:20260618T171000
-SUMMARY:Lurie: Lurie Cancer Center Symposium  & Scientific Poster Session
-DESCRIPTION:Lurie Cancer Center Symposium  & Scientific Poster Session\n\nS
- eries: Lurie Cancer Center Symposium  & Scientific Poster Session\nSpeaker
- : Inflammation\nHening Lin\, PhD\; Nikita Mehta\, PhD\; Ben Kuznets-Speck\
- , PhD\nTopic: Lurie Cancer Center Symposium  & Scientific Poster Session\n
- Source: https://www.cancer.northwestern.edu/events/professional/symposium/
- index.html\nPDF: https://www.cancer.northwestern.edu/docs/event-docs/2026/
- lccsymposium2026-agenda.pdf\nRegistration: https://lcc.northwestern.edu/re
- gistrations2/lccsymposium2026/\nScraped: 2026-05-18T03:23:39.805624+00:00\
- nSource URL: https://www.cancer.northwestern.edu/sitemap.xml\nDetail URL: 
- https://www.cancer.northwestern.edu/events/professional/symposium/index.ht
- ml\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs/2026/lccs
- ymposium2026-agenda.pdf\nPDF SHA256: 26b3247a141317a5b42cace5ae3db071cf557
- f77aef15179cd40235697e6dd53\nRegistration URL: https://lcc.northwestern.ed
- u/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:23:39.805624
- +00:00
+DTEND;TZID=America/Chicago:20260618T183000
+SUMMARY:Lurie: Lurie Cancer Center Symposium & Scientific Poster Session
+DESCRIPTION:Lurie Cancer Center Symposium & Scientific Poster Session\n\nSe
+ ries: Lurie Cancer Center Symposium & Scientific Poster Session\nSpeaker: 
+ Hening Lin\, PhD\nTopic: Protein Acylation in Cancer and Inflammation\nSou
+ rce: https://www.cancer.northwestern.edu/events/professional/symposium/ind
+ ex.html\nPDF: https://www.cancer.northwestern.edu/docs/event-docs/2026/lcc
+ symposium2026-agenda.pdf\nRegistration: https://lcc.northwestern.edu/regis
+ trations2/lccsymposium2026/\nScraped: 2026-05-18T03:32:21.320922+00:00\nSo
+ urce URL: https://www.cancer.northwestern.edu/events/professional/symposiu
+ m/index.html\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs
+ /2026/lccsymposium2026-agenda.pdf\nPDF SHA256: 26b3247a141317a5b42cace5ae3
+ db071cf557f77aef15179cd40235697e6dd53\nRegistration URL: https://lcc.north
+ western.edu/registrations2/lccsymposium2026/\nScraped at: 2026-05-18T03:32
+ :21.320922+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
- icago\, Hughes Auditorium\, Symposium:
+ icago\, Hughes Auditorium
 URL:https://www.cancer.northwestern.edu/events/professional/symposium/index
  .html
 END:VEVENT
