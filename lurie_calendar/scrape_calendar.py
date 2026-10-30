@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-from datetime import UTC, datetime
+from dataclasses import asdict
+from datetime import UTC, date, datetime
 import json
 import re
 from pathlib import Path
@@ -11,7 +12,7 @@ from xml.etree import ElementTree
 from bs4 import BeautifulSoup
 import httpx
 
-from lurie_calendar.models import DiscoveredLink, FetchedPage
+from lurie_calendar.models import DiscoveredLink, FeedListing, FetchedPage, normalized_url
 
 SOURCE_CALENDAR_URL = "https://www.cancer.northwestern.edu/events/index.html"
 PROFESSIONAL_EVENTS_FEED_URL = (
@@ -184,6 +185,33 @@ def _date_line(monthday: str, day_label: str, current_month: str | None, year: i
     return f"{prefix}{month} {day}, {year}"
 
 
+def _listing_date(monthday: str, current_month: str | None, year: int | None) -> date | None:
+    if year is None:
+        return None
+    month_match = re.match(r"\s*([A-Za-z]+)\s+(\d{1,2})", monthday)
+    if month_match:
+        month_name = MONTH_ALIASES.get(month_match.group(1).lower())
+        day = int(month_match.group(2))
+    else:
+        day_match = re.search(r"\d{1,2}", monthday)
+        month_name = current_month
+        day = int(day_match.group(0)) if day_match else 0
+    if not month_name or not day:
+        return None
+    try:
+        return date(year, datetime.strptime(month_name[:3], "%b").month, day)
+    except ValueError:
+        return None
+
+
+def _location_lines(tag: object | None) -> list[str]:
+    get_text = getattr(tag, "get_text", None)
+    if get_text is None:
+        return []
+    lines = (re.sub(r"\s+", " ", line).strip() for line in get_text("\n", strip=True).splitlines())
+    return [line for line in lines if line]
+
+
 def extract_professional_feed_links(html: str, feed_url: str) -> list[DiscoveredLink]:
     soup = BeautifulSoup(html, "html.parser")
     current_month: str | None = None
@@ -224,6 +252,15 @@ def extract_professional_feed_links(html: str, feed_url: str) -> list[Discovered
         ]
         context_text = "\n".join(line for line in context_lines if line)
         display_parts = [part for part in (event_date, series, title, speaker, location) if part]
+        listing = None
+        if title:
+            listing = FeedListing(
+                title=title,
+                event_date=_listing_date(monthday, current_month, current_year),
+                series=series or None,
+                speaker=speaker or None,
+                location=", ".join(_location_lines(element.select_one(".eventLocation"))) or None,
+            )
         links.append(
             DiscoveredLink(
                 url=href,
@@ -231,6 +268,7 @@ def extract_professional_feed_links(html: str, feed_url: str) -> list[Discovered
                 source_url=feed_url,
                 context_text=context_text,
                 title=title or None,
+                listing=listing,
             )
         )
 
@@ -259,10 +297,19 @@ def is_candidate_event_detail(url: str, text: str = "") -> bool:
 
 
 def _unique_links(links: Iterable[DiscoveredLink]) -> list[DiscoveredLink]:
-    by_url: dict[str, DiscoveredLink] = {}
+    """Drop duplicate links to the same page, keeping the professional-feed version.
+
+    The feed and the Lurie site link the same page in different spellings
+    (http://cancer... vs https://www.cancer..., ".../index.html" vs ".../"), and the
+    feed row carries clean title/series/speaker/location fields.
+    """
+    by_key: dict[str, DiscoveredLink] = {}
     for link in links:
-        by_url.setdefault(link.url.rstrip("/"), link)
-    return sorted(by_url.values(), key=lambda item: item.url)
+        key = normalized_url(link.url)
+        existing = by_key.get(key)
+        if existing is None or (existing.listing is None and link.listing is not None):
+            by_key[key] = link
+    return sorted(by_key.values(), key=lambda item: item.url)
 
 
 def parse_sitemap_locations(xml_text: str) -> tuple[list[str], list[str]]:
@@ -360,11 +407,11 @@ def discover_event_links(
             "scraped_at": datetime.now(UTC).isoformat(),
             "seed_urls": seeds,
             "fetched_pages": fetched_pages,
-            "event_links": [link.__dict__ for link in unique],
+            "event_links": [asdict(link) for link in unique],
         }
         write_text_artifact(
             artifacts_dir,
             "discovered_event_links.json",
-            json.dumps(payload, indent=2, sort_keys=True),
+            json.dumps(payload, indent=2, sort_keys=True, default=str),
         )
     return unique

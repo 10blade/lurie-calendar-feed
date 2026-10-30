@@ -14,6 +14,7 @@ from lurie_calendar.ics_writer import CALENDAR_NAME, write_calendar
 from lurie_calendar.models import (
     ReviewItem,
     apply_stable_uids,
+    dedupe_events,
     event_from_json,
     event_to_json,
     review_to_json,
@@ -157,6 +158,7 @@ def update_command(args: argparse.Namespace) -> int:
                 artifacts_dir=artifacts_dir,
                 context_text=link.context_text,
                 context_title=link.title,
+                listing=link.listing,
             )
         except (httpx.HTTPError, ValueError) as exc:
             reviews.append(_review_for_error("Could not fetch event detail page", link.url, now, exc))
@@ -234,7 +236,9 @@ def update_command(args: argparse.Namespace) -> int:
         (artifacts_dir / "parser_failure.txt").write_text("\n".join(errors), encoding="utf-8")
         return 3
 
-    output_events = apply_stable_uids(parsed_events, data_dir / "stable_uids.json", now=now)
+    output_events = apply_stable_uids(
+        dedupe_events(parsed_events), data_dir / "stable_uids.json", now=now
+    )
     confirmed_events = [event for event in output_events if event.status == "CONFIRMED"]
     write_json(data_dir / "lurie_events.json", [event_to_json(event) for event in output_events])
     write_json(data_dir / "review_required.json", [review_to_json(item) for item in reviews])

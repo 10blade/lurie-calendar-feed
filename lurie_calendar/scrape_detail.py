@@ -9,7 +9,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 import httpx
 
-from lurie_calendar.models import DetailPage
+from lurie_calendar.models import DetailPage, FeedListing
 from lurie_calendar.scrape_calendar import safe_artifact_name, write_text_artifact
 
 PDF_TEXT_HINTS = ("pdf", "agenda", "flyer", "brochure", "program")
@@ -155,6 +155,7 @@ def detail_from_html(
     check_pdf_redirects: bool = True,
     context_text: str | None = None,
     context_title: str | None = None,
+    listing: FeedListing | None = None,
 ) -> DetailPage:
     soup = BeautifulSoup(html, "html.parser")
     canonical_url = extract_canonical_url(soup, detail_url)
@@ -177,6 +178,7 @@ def detail_from_html(
         html=html,
         title=extract_title(soup) or context_title,
         source_event_id=extract_source_event_id(detail_url, soup),
+        listing=listing,
     )
 
 
@@ -187,6 +189,7 @@ def fetch_detail(
     artifacts_dir: Path | None = None,
     context_text: str | None = None,
     context_title: str | None = None,
+    listing: FeedListing | None = None,
 ) -> DetailPage:
     if _is_pdf_url(detail_url):
         visible_text = context_text or context_title or detail_url
@@ -201,6 +204,7 @@ def fetch_detail(
             html="",
             title=context_title,
             source_event_id=None,
+            listing=listing,
         )
 
     response = client.get(detail_url)
@@ -215,6 +219,7 @@ def fetch_detail(
         check_pdf_redirects=True,
         context_text=context_text,
         context_title=context_title,
+        listing=listing,
     )
     if artifacts_dir is not None:
         write_text_artifact(

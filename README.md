@@ -91,6 +91,14 @@ The workflow runs tests first, then runs the scraper, commits generated data/log
 
 After a successful workflow run, GitHub will show the Pages site URL.
 
+## If the Calendar Stops Updating
+
+The workflow scrapes once each weekday morning (Chicago time). GitHub often starts scheduled runs an hour or more late, which is expected.
+
+1. Check the status page, https://10blade.github.io/lurie-calendar-feed/, for the last successful run.
+2. Open **Actions > Update and publish calendar**. GitHub turns off scheduled workflows in public repositories after 60 days without repository activity; if a banner says the workflow is disabled, click **Enable workflow**, then run it manually once (see above).
+3. A failed run opens or updates the issue **Lurie calendar scraper failure**, with the run link.
+
 ## Find the Public ICS URL
 
 After GitHub Pages is enabled and the workflow succeeds, the ICS URL should be:

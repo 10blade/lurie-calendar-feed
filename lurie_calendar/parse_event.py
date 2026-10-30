@@ -1,12 +1,19 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import UTC, date, datetime, time, timedelta
 import re
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
-from lurie_calendar.models import CALENDAR_TIMEZONE, DetailPage, ParsedEvent, PdfDocument, ReviewItem
+from lurie_calendar.models import (
+    CALENDAR_TIMEZONE,
+    DetailPage,
+    ParsedEvent,
+    PdfDocument,
+    ReviewItem,
+    split_speaker,
+)
 
 CHICAGO = ZoneInfo(CALENDAR_TIMEZONE)
 
@@ -27,6 +34,13 @@ TIME_RANGE_RE = re.compile(
     r"(?:\s*(?:Central Time|CT|CST|CDT))?",
     re.IGNORECASE,
 )
+# A lone start time such as "3:30 P.M." (flyers often omit the end time).
+SINGLE_TIME_RE = re.compile(
+    r"(?<![\d:])(?P<h>\d{1,2})(?::(?P<m>\d{2}))?\s*(?P<ampm>[ap]\.?\s?m\.?)(?![A-Za-z])",
+    re.IGNORECASE,
+)
+NOON_RE = re.compile(r"\b(?:12(?::00)?\s*)?noon\b", re.IGNORECASE)
+ASSUMED_DURATION = timedelta(hours=1)
 SPEAKER_RE = re.compile(
     r"\b([A-Z][A-Za-z'.-]+(?:[ \t]+[A-Z][A-Za-z'.-]+){1,4},[ \t]*"
     r"(?:MD|PhD|DO|RN|MS|MSc|MPH|MBA|DMin|BCC|LCSW)(?:,\s*(?:MD|PhD|DO|RN|MS|MSc|MPH|MBA|DMin|BCC|LCSW))*)"
@@ -62,6 +76,26 @@ POSITIVE_TERMS = (
     "lecture",
     "keynote",
 )
+# Page furniture and listing labels that must never become an event's topic.
+TOPIC_SKIP_PREFIXES = (
+    "register",
+    "join us",
+    "event details",
+    "image:",
+    "additional information",
+    "source calendar:",
+    "series:",
+    "speaker:",
+    "location:",
+    "add to calendar",
+    "webcast link",
+    "map it",
+    "more info",
+    "subscribe",
+    "skip to",
+    "topics & speakers",
+    "topics and speakers",
+)
 NEGATIVE_TERMS = (
     "support group",
     "patient support",
@@ -85,6 +119,7 @@ class Evidence:
     start_time: time | None
     end_time: time | None
     excerpt: str
+    end_time_assumed: bool = False
 
 
 @dataclass(frozen=True)
@@ -239,12 +274,30 @@ def _label_for_time_match(
     inline_label = context[previous_match_end : match.start()].strip(" :-\t")
     if inline_label:
         return inline_label[-80:]
-    return lines[index - 1] if index > 0 else ""
+    previous_line = lines[index - 1] if index > 0 else ""
+    # Agendas often put the label after the time ("9:00 a.m. - 3:50 p.m." then
+    # "Program"), so a short trailing label is included alongside the previous line.
+    trailing = context[match.end() :].strip(" :-\t|")
+    if not trailing and index + 1 < len(lines):
+        trailing = lines[index + 1]
+    if (
+        trailing
+        and len(trailing) <= 60
+        and not DATE_RE.search(trailing)
+        and not TIME_RANGE_RE.search(trailing)
+        and not SINGLE_TIME_RE.search(trailing)
+    ):
+        return f"{previous_line} | {trailing}".strip(" |")
+    return previous_line
+
+
+def _normalize_noon(text: str) -> str:
+    return NOON_RE.sub("12:00 p.m.", text)
 
 
 def _time_candidates(text: str) -> list[TimeCandidate]:
     candidates: list[TimeCandidate] = []
-    lines = _lines(text)
+    lines = _lines(_normalize_noon(text))
     for index, line in enumerate(lines):
         contexts = [line]
         if index + 1 < len(lines):
@@ -252,12 +305,19 @@ def _time_candidates(text: str) -> list[TimeCandidate]:
         for context in contexts:
             previous_match_end = 0
             for match in TIME_RANGE_RE.finditer(context):
+                if match.start() >= len(line):
+                    # Entirely on the next line, which is scanned on its own; here the
+                    # current line would be mistaken for its label.
+                    continue
                 end_ampm = _normal_ampm(match.group("eampm"))
                 start_ampm = _normal_ampm(match.group("sampm")) or end_ampm
-                start = _to_time(match.group("sh"), match.group("sm"), start_ampm)
-                end = _to_time(match.group("eh"), match.group("em"), end_ampm)
-                if end <= start and match.group("sampm") is None and end_ampm == "pm":
-                    start = _to_time(match.group("sh"), match.group("sm"), "am")
+                try:
+                    start = _to_time(match.group("sh"), match.group("sm"), start_ampm)
+                    end = _to_time(match.group("eh"), match.group("em"), end_ampm)
+                    if end <= start and match.group("sampm") is None and end_ampm == "pm":
+                        start = _to_time(match.group("sh"), match.group("sm"), "am")
+                except ValueError:
+                    continue
                 label = _label_for_time_match(lines, index, context, match, previous_match_end)
                 snippet = f"{label} {match.group(0)}"
                 score = _time_candidate_score(label, snippet)
@@ -266,13 +326,42 @@ def _time_candidates(text: str) -> list[TimeCandidate]:
     return candidates
 
 
-def _extract_time_range(text: str) -> tuple[time | None, time | None, str]:
+def _single_time_candidates(text: str) -> list[TimeCandidate]:
+    candidates: list[TimeCandidate] = []
+    lines = _lines(_normalize_noon(text))
+    for index, line in enumerate(lines):
+        previous_match_end = 0
+        for match in SINGLE_TIME_RE.finditer(line):
+            if not 1 <= int(match.group("h")) <= 12:
+                continue
+            try:
+                start = _to_time(match.group("h"), match.group("m"), _normal_ampm(match.group("ampm")))
+            except ValueError:
+                continue
+            end = (datetime.combine(date.min, start) + ASSUMED_DURATION).time()
+            label = _label_for_time_match(lines, index, line, match, previous_match_end)
+            snippet = f"{label} {match.group(0)}"
+            score = _time_candidate_score(label, snippet)
+            candidates.append(TimeCandidate(score, start, end, label, snippet.strip()))
+            previous_match_end = match.end()
+    return candidates
+
+
+def _extract_time_range(text: str) -> tuple[time | None, time | None, str, bool]:
+    """Return (start, end, excerpt, end_time_assumed) for the best event time in text."""
     candidates = _time_candidates(text)
-    if not candidates:
-        return None, None, ""
-    candidates.sort(key=lambda item: item.score, reverse=True)
-    best = candidates[0]
-    return best.start, best.end, best.excerpt
+    if candidates:
+        candidates.sort(key=lambda item: item.score, reverse=True)
+        best = candidates[0]
+        return best.start, best.end, best.excerpt, False
+    # No time range anywhere: fall back to a lone start time, skipping ones labelled
+    # as registration, breakfast, reception and the like.
+    singles = [item for item in _single_time_candidates(text) if item.score >= 0]
+    if not singles:
+        return None, None, "", False
+    singles.sort(key=lambda item: item.score, reverse=True)
+    best = singles[0]
+    return best.start, best.end, best.excerpt, True
 
 
 def _extend_end_time_for_full_event(title: str, text: str, start: time, end: time) -> time:
@@ -317,7 +406,7 @@ def extract_evidence(text: str, source_name: str, source_url: str, fallback_titl
         preferred_year=_preferred_year_from_url(source_url),
         fallback_title=fallback_title,
     )
-    start_time, end_time, time_excerpt = _extract_time_range(text)
+    start_time, end_time, time_excerpt, end_time_assumed = _extract_time_range(text)
     title = _evidence_title(text, source_name, fallback_title)
     excerpt = "\n".join(part for part in (title or "", date_excerpt, time_excerpt) if part)
     return Evidence(
@@ -328,6 +417,7 @@ def extract_evidence(text: str, source_name: str, source_url: str, fallback_titl
         start_time=start_time,
         end_time=end_time,
         excerpt=excerpt[:1200],
+        end_time_assumed=end_time_assumed,
     )
 
 
@@ -390,7 +480,7 @@ def _topic(title: str, text: str) -> str | None:
         if not title_seen:
             continue
         lower = line.lower()
-        if lower.startswith(("register", "join us", "event details", "image:", "additional information")):
+        if lower.startswith(TOPIC_SKIP_PREFIXES):
             continue
         if any(
             term in lower
@@ -590,9 +680,11 @@ def _check_conflicts(
                     )
                 )
         if html_evidence.start_time and pdf_evidence.start_time:
+            # An estimated end time (start time listed alone) is not evidence of a conflict.
+            compare_end = not (html_evidence.end_time_assumed or pdf_evidence.end_time_assumed)
             if _pdf_time_conflict_is_reliable(pdf_evidence) and (
                 html_evidence.start_time != pdf_evidence.start_time
-                or html_evidence.end_time != pdf_evidence.end_time
+                or (compare_end and html_evidence.end_time != pdf_evidence.end_time)
             ):
                 reviews.append(
                     _conflict_review(
@@ -671,19 +763,27 @@ def parse_event(
     if reviews:
         return ParseResult(event=None, reviews=reviews)
 
-    html_evidence = extract_evidence(detail.visible_text, "html", detail.detail_url, detail.title)
+    # A row from Lurie's professional events listing has clean title, date, series,
+    # speaker and location fields; the linked page or flyer is still needed for the time.
+    listing = detail.listing
+    title_hint = listing.title if listing else detail.title
+    html_evidence = extract_evidence(detail.visible_text, "html", detail.detail_url, title_hint)
+    if listing and listing.event_date:
+        html_evidence = replace(html_evidence, event_date=listing.event_date)
     pdf_evidences = [
-        extract_evidence(pdf.text, "pdf", pdf.source_url, detail.title) for pdf in pdf_documents
+        extract_evidence(pdf.text, "pdf", pdf.source_url, title_hint) for pdf in pdf_documents
     ]
     conflict_reviews = _check_conflicts(detail, scraped_at, html_evidence, pdf_evidences)
     if conflict_reviews:
         return ParseResult(event=None, reviews=conflict_reviews)
 
     evidences = [html_evidence, *pdf_evidences]
-    title = next((item.title for item in evidences if item.title), None)
+    title = listing.title if listing else next((item.title for item in evidences if item.title), None)
     event_date = next((item.event_date for item in evidences if item.event_date), None)
-    start_time = next((item.start_time for item in evidences if item.start_time), None)
-    end_time = next((item.end_time for item in evidences if item.end_time), None)
+    timed = next((item for item in evidences if item.start_time), None)
+    start_time = timed.start_time if timed else None
+    end_time = timed.end_time if timed else None
+    end_time_assumed = bool(timed and timed.end_time_assumed)
 
     if not title or not event_date or not start_time:
         reviews.append(
@@ -713,11 +813,23 @@ def parse_event(
     if start_dt > local_now + timedelta(days=days_ahead):
         return ParseResult(event=None, reviews=[], skipped=True)
 
-    series = _series(title, combined_text)
-    topic = _topic(title, detail.visible_text)
-    speaker = _speaker(combined_text)
-    speaker_affiliation = _speaker_affiliation(combined_text, speaker)
-    location = _location(detail.visible_text)
+    subtitle = None
+    if listing:
+        series = listing.series or _series(title, combined_text)
+        topic = listing.title
+        speaker_name, speaker_affiliation = split_speaker(listing.speaker)
+        if speaker_name:
+            speaker = listing.speaker
+        else:
+            # The listing's second line is a theme or subtitle, not a person.
+            speaker, subtitle = None, listing.speaker
+        location = listing.location or _location(detail.visible_text)
+    else:
+        series = _series(title, combined_text)
+        topic = _topic(title, detail.visible_text)
+        speaker = _speaker(combined_text)
+        speaker_affiliation = _speaker_affiliation(combined_text, speaker)
+        location = _location(detail.visible_text)
     mode = _format_mode(combined_text, location)
     pdf_used = pdf_documents[0] if pdf_documents else None
     confidence = 0.82
@@ -727,16 +839,26 @@ def parse_event(
         confidence += 0.04
     if detail.registration_url:
         confidence += 0.03
+    if listing:
+        confidence += 0.03
     confidence = min(confidence, 0.95)
     raw_excerpt = "\n\n".join(item.excerpt for item in evidences if item.excerpt)[:1600]
     pdf_description_line = f"\nPDF: {pdf_used.source_url}" if pdf_used else ""
     event_source_url = detail.canonical_url or detail.detail_url
+    subtitle_line = f"Subtitle: {subtitle}\n" if subtitle else ""
+    time_note = (
+        "Time note: the source lists only a start time; the end time is an estimate.\n"
+        if end_time_assumed
+        else ""
+    )
 
     description = (
         f"{title}\n\n"
+        f"{subtitle_line}"
         f"Series: {series or 'Unknown'}\n"
         f"Speaker: {speaker or 'Unknown'}\n"
         f"Topic: {topic or 'Unknown'}\n"
+        f"{time_note}"
         f"Source: {detail.detail_url}"
         f"{pdf_description_line}"
         f"{_registration_text(detail.registration_url)}\n"

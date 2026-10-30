@@ -1,6 +1,9 @@
+from datetime import date
 from pathlib import Path
 
+from lurie_calendar.models import DiscoveredLink
 from lurie_calendar.scrape_calendar import (
+    _unique_links,
     extract_links_from_html,
     extract_professional_feed_links,
     is_candidate_event_detail,
@@ -48,3 +51,46 @@ def test_extracts_js_professional_feed_rows() -> None:
     assert links[0].title == "Chromatin Deregulation in Pediatric Cancers"
     assert "Tuesday, May 19, 2026" in (links[0].context_text or "")
     assert "Basic Research Seminar" in (links[0].context_text or "")
+    listing = links[0].listing
+    assert listing is not None
+    assert listing.title == "Chromatin Deregulation in Pediatric Cancers"
+    assert listing.event_date == date(2026, 5, 19)
+    assert listing.series == "Lurie Cancer Center Basic Research Seminar"
+    assert listing.speaker == "Andrea Piunti, PhD, University of Chicago"
+    assert listing.location == "Robert H. Lurie Medical Research Center, Searle Seminar Room"
+
+
+def test_feed_row_and_site_link_to_same_page_are_deduplicated() -> None:
+    # Live feed (Oct 2026) links the nursing conference as http://cancer...index.html,
+    # while the Lurie site links it as https://www.cancer.../nursing/.
+    feed_html = """
+    <section class='eventsWrapper'><h2 class='clear'>November 2026</h2>
+      <div class="event">
+        <div class="eventDate"><span class='day'>Friday</span><span class='monthday'>Nov 20</span></div>
+        <div class="eventDetail">
+          <label>Lurie Cancer Center Professional Education Events</label>
+          <h3><a href="http://cancer.northwestern.edu/events/professional/nursing/index.html">29th Annual Oncology Nursing Conference</a></h3>
+          <p class='subTitle'>Innovation with Heart: The Science and Soul of Oncology Nursing</p>
+        </div>
+        <div class="eventLocation"><p>Northwestern Memorial Hospital<br/>Feinberg Pavilion, 3rd Floor<br/>251 E. Huron St.<br/></p></div>
+      </div>
+    </section>
+    """
+    feed_links = extract_professional_feed_links(
+        feed_html,
+        "https://www.cancer.northwestern.edu/events/getEvents.php?q=lcc-e-professional",
+    )
+    site_link = DiscoveredLink(
+        url="https://www.cancer.northwestern.edu/events/professional/nursing/",
+        text="Oncology Nursing Conference",
+        source_url="https://www.cancer.northwestern.edu/events/index.html",
+    )
+
+    unique = _unique_links([site_link, *feed_links])
+
+    assert len(unique) == 1
+    assert unique[0].listing is not None
+    assert unique[0].listing.title == "29th Annual Oncology Nursing Conference"
+    assert unique[0].listing.location == (
+        "Northwestern Memorial Hospital, Feinberg Pavilion, 3rd Floor, 251 E. Huron St."
+    )

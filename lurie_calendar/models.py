@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 import hashlib
 import json
 import re
@@ -13,6 +13,30 @@ from uuid import NAMESPACE_URL, uuid5
 
 CALENDAR_TIMEZONE = "America/Chicago"
 UID_DOMAIN = "lurie-calendar-feed.github.io"
+LURIE_HOSTS = frozenset({"www.cancer.northwestern.edu", "cancer.northwestern.edu"})
+
+# Credentials that mark the end of a speaker's name in lines such as
+# "Ronald Hoffman, MD, Icahn School of Medicine at Mount Sinai".
+CREDENTIALS = frozenset(
+    {
+        "md", "phd", "do", "mph", "ms", "msc", "mba", "rn", "bsn", "msn", "dnp", "aprn", "np",
+        "pa-c", "pharmd", "drph", "mbbs", "ma", "dsc", "scd", "jd", "facp", "fasco", "faan",
+        "facs", "frcp", "frcpc", "ocn", "aocn", "aocns", "cns", "lcsw", "mhs", "msci", "msce",
+        "mphil", "dphil", "mmsc", "dmin", "bcc", "mpp", "edd", "psyd", "dds", "dmd", "rph",
+        "bcop", "cnp",
+    }
+)
+
+
+@dataclass(frozen=True)
+class FeedListing:
+    """Structured fields from one row of Lurie's professional events listing."""
+
+    title: str
+    event_date: date | None = None
+    series: str | None = None
+    speaker: str | None = None
+    location: str | None = None
 
 
 @dataclass(frozen=True)
@@ -22,6 +46,7 @@ class DiscoveredLink:
     source_url: str
     context_text: str | None = None
     title: str | None = None
+    listing: FeedListing | None = None
 
 
 @dataclass(frozen=True)
@@ -44,6 +69,7 @@ class DetailPage:
     html: str
     title: str | None = None
     source_event_id: str | None = None
+    listing: FeedListing | None = None
 
 
 @dataclass
@@ -142,11 +168,46 @@ def normalize_key_text(value: str | None) -> str:
 
 
 def normalized_url(value: str | None) -> str:
+    """Comparison key for a URL.
+
+    Lurie pages are reachable as http or https, with or without "www", and with or
+    without a trailing "index.html"; all of those spellings map to the same key.
+    """
     if not value:
         return ""
     parsed = urlparse(value)
-    path = parsed.path.rstrip("/") or "/"
-    return parsed._replace(path=path, query=parsed.query, fragment="").geturl().lower()
+    host = parsed.netloc.lower()
+    path = parsed.path
+    if host in LURIE_HOSTS:
+        host = "www.cancer.northwestern.edu"
+        if path.lower().endswith("/index.html"):
+            path = path[: -len("index.html")]
+    path = path.rstrip("/") or "/"
+    return parsed._replace(scheme="https", netloc=host, path=path, fragment="").geturl().lower()
+
+
+def _credential_key(value: str) -> str:
+    return value.strip().replace(".", "").replace(" ", "").lower()
+
+
+def split_speaker(value: str | None) -> tuple[str | None, str | None]:
+    """Split "Name, MD, PhD, Affiliation" into ("Name, MD, PhD", "Affiliation").
+
+    Returns (None, None) when the text has no credential, because the listing then
+    holds a subtitle or theme rather than a speaker.
+    """
+    if not value:
+        return None, None
+    parts = [part.strip() for part in value.split(",")]
+    last_credential = None
+    for index, part in enumerate(parts):
+        if index > 0 and _credential_key(part) in CREDENTIALS:
+            last_credential = index
+    if last_credential is None:
+        return None, None
+    name = ", ".join(parts[: last_credential + 1])
+    affiliation = ", ".join(part for part in parts[last_credential + 1 :] if part)
+    return name, affiliation or None
 
 
 def uid_key_for_event(event: ParsedEvent) -> str:
@@ -203,6 +264,21 @@ def _event_changed(previous: dict[str, Any] | None, event: ParsedEvent) -> bool:
         "status",
     ]
     return any(previous.get(key) != current.get(key) for key in compared_keys)
+
+
+def dedupe_events(events: list[ParsedEvent]) -> list[ParsedEvent]:
+    """Keep one event per UID key, preferring the most confident parse.
+
+    The same page can be discovered through several links; publishing it twice would
+    put two VEVENTs with the same UID in the calendar.
+    """
+    best: dict[str, ParsedEvent] = {}
+    for event in events:
+        key = uid_key_for_event(event)
+        current = best.get(key)
+        if current is None or event.confidence > current.confidence:
+            best[key] = event
+    return list(best.values())
 
 
 def apply_stable_uids(

@@ -25,16 +25,25 @@ jobs:
     steps:
       - name: Check Chicago schedule gate
         id: schedule_gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          FIRED_CRON: ${{ github.event.schedule }}
         run: |
-          if [ "${{ github.event_name }}" != "schedule" ]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-            exit 0
+          # The two crons are 08:37 Chicago time in summer (CDT, 13:37 UTC) and in winter
+          # (CST, 14:37 UTC). GitHub starts scheduled runs late, often by an hour or more,
+          # so never compare the clock to an exact minute; instead skip the cron that does
+          # not match Chicago's current UTC offset. Anything unexpected runs (fails open).
+          offset="$(TZ=America/Chicago date +%z)"
+          should_run=true
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            if [ "$FIRED_CRON" = "37 13 * * 1-5" ] && [ "$offset" = "-0600" ]; then
+              should_run=false
+            elif [ "$FIRED_CRON" = "37 14 * * 1-5" ] && [ "$offset" = "-0500" ]; then
+              should_run=false
+            fi
           fi
-          if [ "$(TZ=America/Chicago date +'%H:%M')" = "08:37" ]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
-          fi
+          echo "event=$EVENT_NAME cron='${FIRED_CRON}' chicago_offset=$offset should_run=$should_run"
+          echo "should_run=$should_run" >> "$GITHUB_OUTPUT"
 
       - name: Check out repository
         if: steps.schedule_gate.outputs.should_run == 'true'

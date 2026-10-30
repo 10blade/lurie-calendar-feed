@@ -2,12 +2,26 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 from pathlib import Path
+import re
 from zoneinfo import ZoneInfo
 
-from lurie_calendar.models import CALENDAR_TIMEZONE, ParsedEvent
+from lurie_calendar.models import CALENDAR_TIMEZONE, ParsedEvent, split_speaker
 
 CALENDAR_NAME = "Lurie Cancer Center Professional Education Events"
 PRODID = "-//10blade//Lurie Calendar Feed//EN"
+# Series labels that say nothing beyond "Lurie" and are left out of event titles.
+GENERIC_SERIES = frozenset(
+    {
+        "lurie cancer center",
+        "lurie cancer center professional education events",
+        "professional education events",
+        "robert h. lurie comprehensive cancer center",
+    }
+)
+LURIE_PREFIX_RE = re.compile(
+    r"^(?:Robert H\.\s+)?Lurie\s+(?:Comprehensive\s+)?Cancer\s+Center(?:'s)?\s+",
+    re.IGNORECASE,
+)
 
 
 def escape_text(value: str | None) -> str:
@@ -47,9 +61,17 @@ def format_utc_datetime(value: datetime) -> str:
     return value.astimezone(UTC).strftime("%Y%m%dT%H%M%SZ")
 
 
+def _series_label(series: str | None) -> str | None:
+    """Series name for an event title, without a redundant "Lurie Cancer Center" prefix."""
+    if not series or series.strip().lower() in GENERIC_SERIES:
+        return None
+    return LURIE_PREFIX_RE.sub("", series.strip()) or None
+
+
 def summary_for_event(event: ParsedEvent) -> str:
     topic = event.topic or event.title
-    speaker = event.speaker
+    # Calendar titles carry the speaker's name and degrees, not the full affiliation.
+    speaker = split_speaker(event.speaker)[0] or event.speaker
     series = (event.series or "").lower()
     if "grand rounds" in series:
         return f"Lurie Grand Rounds: {topic}"
@@ -57,8 +79,9 @@ def summary_for_event(event: ParsedEvent) -> str:
         return f"Lurie Seminar: {speaker} - {topic}"
     if "seminar" in series:
         return f"Lurie Seminar: {topic}"
-    if event.series and event.series != event.title:
-        return f"Lurie {event.series}: {topic}"
+    label = _series_label(event.series)
+    if label and event.series != event.title:
+        return f"Lurie {label}: {topic}"
     return f"Lurie: {event.title}"
 
 
