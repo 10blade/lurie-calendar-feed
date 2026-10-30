@@ -1,0 +1,161 @@
+[
+  {
+    "start_datetime": "2026-11-20T08:30:00-06:00",
+    "status": "published_candidate",
+    "title": "Oncology Nursing Conference",
+    "url": "https://www.cancer.northwestern.edu/events/professional/nursing/index.html"
+  },
+  {
+    "start_datetime": "2026-11-13T08:00:00-06:00",
+    "status": "published_candidate",
+    "title": "GI Oncology Symposium",
+    "url": "https://www.cancer.northwestern.edu/events/professional/gi/"
+  },
+  {
+    "start_datetime": "2026-11-02T12:00:00-06:00",
+    "status": "published_candidate",
+    "title": "The Changing Ways of Small Cell Lung Cancer",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-02-TRIM.pdf"
+  },
+  {
+    "reason": "Could not confidently parse required title/date/time",
+    "status": "review_required",
+    "title": "Immunological Mechanisms of Cancer Defense",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-03-driskill-Li.pdf"
+  },
+  {
+    "start_datetime": "2026-11-05T09:00:00-06:00",
+    "status": "published_candidate",
+    "title": "Transforming Research & Partnership Opportunities: Organoid Modeling, Spatial Pathology and Target Identification",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-05-TempusAI.pdf"
+  },
+  {
+    "start_datetime": "2026-11-09T12:00:00-06:00",
+    "status": "published_candidate",
+    "title": "New Treatment Options for Myelofibrosis",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-09-GR-Hoffman.pdf"
+  },
+  {
+    "start_datetime": "2026-11-10T11:00:00-06:00",
+    "status": "published_candidate",
+    "title": "Understanding and Overcoming Resistance to KRAS Inhibitors in Pancreatic Cancer",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-10-Hart-Munshi.pdf"
+  },
+  {
+    "start_datetime": "2026-11-16T12:00:00-06:00",
+    "status": "published_candidate",
+    "title": "Current Progress in RCC and Ongoing Research",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-16-GR-Liu.pdf"
+  },
+  {
+    "start_datetime": "2026-11-17T11:00:00-06:00",
+    "status": "published_candidate",
+    "title": "Decoding How Cells Evolve and Change Fates in Native Human Tissues Via Long-Read Single-Cell RNA Sequencing",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-11-17-BR-Gao.pdf"
+  },
+  {
+    "start_datetime": "2026-12-02T12:30:00-06:00",
+    "status": "published_candidate",
+    "title": "SDM in the Management of CLL",
+    "url": "https://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pdf"
+  },
+  {
+    "start_datetime": "2026-12-03T10:00:00-06:00",
+    "status": "published_candidate",
+    "title": "BMG Seminar: De-Chen Lin, Ph.D., University of Southern California",
+    "url": "https://planitpurple.northwestern.edu/event/647666"
+  },
+  {
+    "start_datetime": "2026-11-17T15:30:00-06:00",
+    "status": "published_candidate",
+    "title": "Distinguished Lecturers in Life Sciences: Developing a Career: From Khao I Dang to the Microbiota in Colon Cancer | Cynthia Sears, MD | Tuesday, November 17th | 3:30 pm",
+    "url": "https://planitpurple.northwestern.edu/event/647820"
+  },
+  {
+    "error": "Client error '404 Not Found' for url 'https://planitpurple.northwestern.edu/event/647850'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "status": "detail_fetch_failed",
+    "url": "https://planitpurple.northwestern.edu/event/647850"
+  },
+  {
+    "start_datetime": "2026-11-02T11:00:00-06:00",
+    "status": "published_candidate",
+    "title": "Trainee Research Advancements, Insights and Learning Seminars",
+    "url": "https://planitpurple.northwestern.edu/event/647913"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/gyn-onc/index.html"
+  },
+  {
+    "reason": "PDF date conflicts with webpage date",
+    "status": "review_required",
+    "title": "Lurie Cancer Center Multidisciplinary Head & Neck Symposium",
+    "url": "https://www.cancer.northwestern.edu/events/professional/head-neck/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/hfbasic/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/m3/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/mbti-cme/index.html"
+  },
+  {
+    "start_datetime": "2026-11-20T08:30:00-06:00",
+    "status": "published_candidate",
+    "title": "Oncology Nursing Conference",
+    "url": "https://www.cancer.northwestern.edu/events/professional/nursing/index.html"
+  },
+  {
+    "reason": "Could not confidently parse required title/date/time",
+    "status": "review_required",
+    "title": "Oncology Nursing Discovery Program",
+    "url": "https://www.cancer.northwestern.edu/events/professional/nursing/oncology-nursing-discovery-program.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/oncology-review/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/oncoset/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/pain/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/prostate/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/research/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/survivorship-symposium/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/symposium/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/translational-bridge/index.html"
+  },
+  {
+    "reason": "PDF time conflicts with webpage time",
+    "status": "review_required",
+    "title": "Translational Research in Malignancies Symposium",
+    "url": "https://www.cancer.northwestern.edu/events/professional/trim/index.html"
+  },
+  {
+    "status": "skipped",
+    "url": "https://www.cancer.northwestern.edu/events/professional/trist/index.html"
+  }
+]

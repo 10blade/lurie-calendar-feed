@@ -1,0 +1,38 @@
+Image Source: National Institutes of Health
+Decoding How Cells Evolve and Change Fates in 
+Native Human Tissues Via Long-Read Single-Cell 
+RNA Sequencing
+Ruli Gao, PhD
+Assistant Professor, Biochemistry and Molecular Genetics 
+Northwestern University Feinberg School of Medicine
+Hosted by: Caroline LePoole, PhD
+Basic Sciences Research Division of the
+Robert H. Lurie Comprehensive Cancer Center  
+of Northwestern University
+cancer.northwestern.edu
+ 
+Lurie Cancer Center’s Basic Research Seminar Series
+Robert H. Lurie Comprehensive Cancer Center of Northwestern University
+Tuesday, November 17, 2026 
+11:00 a.m. - 12:00 p.m. CT
+Searle Seminar Room, 1st Floor 
+Robert H. Lurie Medical Research Center 
+303 E. Superior St., Chicago, IL
+Understanding how cells evolve and change fates in native human 
+tissues requires linking their genetic histories to their transcriptional 
+states. Long-read single-cell RNA sequencing enables joint profiling of 
+expressed genetic variants, gene expression, and transcript isoforms, 
+providing a foundation for resolving these relationships. In this 
+presentation, I will introduce a high-throughput long-read single-cell 
+RNA sequencing approach and computational tools for reconstructing 
+clonal evolutionary lineages from somatic variants and integrating 
+these lineages with transcriptional profiles. Applications to human 
+immune cells and lung tumors reveal the origins and directionality 
+of cell-state changes and the coupling between genetic evolution 
+and fate remodeling. Together, this work establishes a framework for 
+decoding cellular evolution and fate dynamics directly in native tissues 
+without experimental lineage labeling, offering new insights into tumor 
+progression and adaptation in their physiological and disease contexts.
+Key topics:  
+Single-Cell RNA Sequencing and Clonal Evolution
+Refreshments will be provided.
