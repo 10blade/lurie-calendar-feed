@@ -24,38 +24,11 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:cc508cc4-5da2-5b21-b51d-5e2972de09b5@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
-DTSTART;TZID=America/Chicago:20261103T153000
-DTEND;TZID=America/Chicago:20261103T163000
-SUMMARY:Lurie Driskill Graduate Program Distinguished Lectures in Life Scie
- nces: Immunological Mechanisms of Cancer Defense
-DESCRIPTION:Immunological Mechanisms of Cancer Defense\n\nSeries: Driskill 
- Graduate Program Distinguished Lectures in Life Sciences\nSpeaker: Ming Li
- \, PhD\, Memorial Sloan Kettering Cancer Center\nTopic: Immunological Mech
- anisms of Cancer Defense\nTime note: the source lists only a start time\; 
- the end time is an estimate.\nSource: https://lcc.northwestern.edu/mail/20
- 26/flyers/2026-11-03-driskill-Li.pdf\nPDF: https://lcc.northwestern.edu/ma
- il/2026/flyers/2026-11-03-driskill-Li.pdf\nScraped: 2026-11-03T20:36:43.36
- 8894+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/2026
- -11-03-driskill-Li.pdf\nPDF URL: https://lcc.northwestern.edu/mail/2026/fl
- yers/2026-11-03-driskill-Li.pdf\nPDF SHA256: faf51658a2a2cb16db55d058d7883
- 6e3d68001fd25f865d49f06f19c02b3c438\nScraped at: 2026-11-03T20:36:43.36889
- 4+00:00
-LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
- icago\, Hughes Auditorium
-URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-03-driskill-Li.pd
- f
-END:VEVENT
-BEGIN:VEVENT
 UID:75c1960f-5e97-5456-ab70-2c8fcbb18d4b@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261105T090000
 DTEND;TZID=America/Chicago:20261105T100000
 SUMMARY:Lurie: Transforming Research & Partnership Opportunities: Organoid 
@@ -77,10 +50,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-05-TempusAI.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:63ead6a9-872f-554d-9179-6bf9a4b4ab76@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261106T110000
 DTEND;TZID=America/Chicago:20261106T120000
 SUMMARY:Lurie Biochemistry & Molecular Genetics (BMG): Chemical-Genetic Map
@@ -104,10 +77,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-06-BMG-Klein.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:f0ceabc3-a677-5ba9-98cf-e711337180fd@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261106T180000
 DTEND;TZID=America/Chicago:20261106T190000
 SUMMARY:Lurie Grand Rounds: Principles of 4th Ventricular Surgery for Brain
@@ -128,10 +101,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-06-neuroGR-DeCuyp
 END:VEVENT
 BEGIN:VEVENT
 UID:bb1d01af-f46f-5b6c-bf47-0f2adb9cd6f1@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261109T120000
 DTEND;TZID=America/Chicago:20261109T130000
 SUMMARY:Lurie Grand Rounds: New Treatment Options for Myelofibrosis
@@ -151,10 +124,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-09-GR-Hoffman.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:85711132-7fc5-533c-95ed-b5e089e8e7e5@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261109T130000
 DTEND;TZID=America/Chicago:20261109T140000
 SUMMARY:Lurie Seminar: Macromolecular Structures Matter: Exploring Northwes
@@ -179,10 +152,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-09-CoreTech-Esfah
 END:VEVENT
 BEGIN:VEVENT
 UID:18ad2959-4e08-5fad-b139-d9d3f7153feb@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261110T110000
 DTEND;TZID=America/Chicago:20261110T120000
 SUMMARY:Lurie Seminar: Hidayatullah Munshi\, MD - Understanding and Overcom
@@ -206,10 +179,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-10-Hart-Munshi.pd
 END:VEVENT
 BEGIN:VEVENT
 UID:ba02f76b-f149-56fd-ac0a-396486f57529@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261113T080000
 DTEND;TZID=America/Chicago:20261113T163000
 SUMMARY:Lurie: Inaugural GI Oncology Symposium
@@ -230,10 +203,10 @@ URL:https://www.cancer.northwestern.edu/events/professional/gi/
 END:VEVENT
 BEGIN:VEVENT
 UID:74abbc10-faf6-512d-8d3f-7ada1064dc91@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261116T120000
 DTEND;TZID=America/Chicago:20261116T130000
 SUMMARY:Lurie Grand Rounds: Current Progress in RCC and Ongoing Research
@@ -253,10 +226,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-16-GR-Liu.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:b4b99c25-b0ec-5f5a-a09e-035d1b33053f@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261117T110000
 DTEND;TZID=America/Chicago:20261117T120000
 SUMMARY:Lurie Seminar: Ruli Gao\, PhD - Decoding How Cells Evolve and Chang
@@ -279,10 +252,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-17-BR-Gao.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:4e725315-0fe8-5efc-ac99-f84544f48e36@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261117T153000
 DTEND;TZID=America/Chicago:20261117T163000
 SUMMARY:Lurie Driskill Graduate Program Distinguished Lectures in Life Scie
@@ -301,37 +274,36 @@ URL:https://planitpurple.northwestern.edu/event/647820
 END:VEVENT
 BEGIN:VEVENT
 UID:2dce1f47-4c15-5916-9b5c-29721ae26dd3@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261120T090000
 DTEND;TZID=America/Chicago:20261120T155000
-SUMMARY:Lurie: 29th Annual Oncology Nursing Conference
-DESCRIPTION:29th Annual Oncology Nursing Conference\n\nSubtitle: Innovation
-  with Heart: The Science and Soul of Oncology Nursing\nSeries: Lurie Cance
- r Center Professional Education Events\nSpeaker: Unknown\nTopic: 29th Annu
- al Oncology Nursing Conference\nSource: https://www.cancer.northwestern.ed
- u/events/professional/nursing/index.html\nPDF: https://www.cancer.northwes
- tern.edu/docs/event-docs/2026/nursing2026.pdf\nRegistration: https://lcc.n
- orthwestern.edu/registrations/nursing/\nScraped: 2026-11-03T20:36:43.36889
- 4+00:00\nSource URL: https://www.cancer.northwestern.edu/events/profession
- al/nursing/index.html\nPDF URL: https://www.cancer.northwestern.edu/docs/e
- vent-docs/2026/nursing2026.pdf\nPDF SHA256: 68d73e6bbf747c46b666d0dc18c484
- 923cb8e22901f7fc84a5ff0f53e37152ea\nRegistration URL: https://lcc.northwes
- tern.edu/registrations/nursing/\nScraped at: 2026-11-03T20:36:43.368894+00
- :00
-LOCATION:Northwestern Memorial Hospital\, Feinberg Pavilion\, 3rd Floor\, 2
- 51 E. Huron St.\, Chicago
+SUMMARY:Lurie: Oncology Nursing Conference
+DESCRIPTION:Oncology Nursing Conference\n\nSeries: Oncology Nursing Confere
+ nce\nSpeaker: Recognizing and Managing Acute Adverse Reactions to Chemothe
+ rapeutics\nTopic: Recognizing and Managing Acute Adverse Reactions to Chem
+ otherapeutics\nSource: https://www.cancer.northwestern.edu/events/professi
+ onal/nursing/index.html\nPDF: https://www.cancer.northwestern.edu/docs/eve
+ nt-docs/2026/nursing2026.pdf\nRegistration: https://lcc.northwestern.edu/r
+ egistrations/nursing/\nScraped: 2026-11-04T20:55:02.308942+00:00\nSource U
+ RL: https://www.cancer.northwestern.edu/events/professional/nursing/index.
+ html\nPDF URL: https://www.cancer.northwestern.edu/docs/event-docs/2026/nu
+ rsing2026.pdf\nPDF SHA256: 68d73e6bbf747c46b666d0dc18c484923cb8e22901f7fc8
+ 4a5ff0f53e37152ea\nRegistration URL: https://lcc.northwestern.edu/registra
+ tions/nursing/\nScraped at: 2026-11-04T20:55:02.308942+00:00
+LOCATION:Northwestern Memorial Hospital\, Feinberg Pavilion\, 3rd Floor Con
+ ference Center\, 251 E. Huron St.\, Chicago
 URL:https://www.cancer.northwestern.edu/events/professional/nursing/index.h
  tml
 END:VEVENT
 BEGIN:VEVENT
 UID:2bec4290-ad6a-5f95-bb87-6b38f0141623@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261120T120000
 DTEND;TZID=America/Chicago:20261120T130000
 SUMMARY:Lurie Seminar: Brian Mitchell\, PhD - Mechanical Regulation of Cell
@@ -354,10 +326,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-20-TEAM-Mitchell.
 END:VEVENT
 BEGIN:VEVENT
 UID:7b15d6c9-afc8-5aee-8c5f-1b4d548abcac@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261123T130000
 DTEND;TZID=America/Chicago:20261123T140000
 SUMMARY:Lurie Seminar: Caroline Bond and Ramin Nateghi\, PhD - Lurie Cancer
@@ -378,10 +350,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-23-LCC-RIP.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:8183471e-5129-594d-be6f-3c351070a27f@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261202T123000
 DTEND;TZID=America/Chicago:20261202T133000
 SUMMARY:Lurie Medical Communications Collaboration: SDM in the Management o
@@ -403,10 +375,10 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pd
 END:VEVENT
 BEGIN:VEVENT
 UID:996cdd45-9eac-55ee-98af-5910a78703c2@lurie-calendar-feed.github.io
-DTSTAMP:20261103T203643Z
-LAST-MODIFIED:20261103T203643Z
-SEQUENCE:0
-STATUS:CONFIRMED
+DTSTAMP:20261104T205502Z
+LAST-MODIFIED:20261104T205502Z
+SEQUENCE:1
+STATUS:CANCELLED
 DTSTART;TZID=America/Chicago:20261203T100000
 DTEND;TZID=America/Chicago:20261203T110000
 SUMMARY:Lurie Biochemistry & Molecular Genetics (BMG): Cancer Evolution and
