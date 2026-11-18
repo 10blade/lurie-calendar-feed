@@ -24,59 +24,9 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:42d537d0-cca8-5940-9737-d225d54a1bb4@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
-SEQUENCE:0
-STATUS:CONFIRMED
-DTSTART;TZID=America/Chicago:20261118T120500
-DTEND;TZID=America/Chicago:20261118T130000
-SUMMARY:Lurie Department of Medicine - Green Family Lectureship: Management
-  of Chemotherapy-Induced Thrombocytopenia: One Approach Does Not Fit
-DESCRIPTION:Management of Chemotherapy-Induced Thrombocytopenia: One Approa
- ch Does Not Fit\n\nSeries: Department of Medicine - Green Family Lecturesh
- ip\nSpeaker: Brandon McMahon\, MD\, Northwestern University Feinberg Schoo
- l of Medicine\nTopic: Management of Chemotherapy-Induced Thrombocytopenia:
-  One Approach Does Not Fit\nSource: https://lcc.northwestern.edu/mail/2026
- /flyers/2026-11-18-MGR-soff.pdf\nPDF: https://lcc.northwestern.edu/mail/20
- 26/flyers/2026-11-18-MGR-soff.pdf\nScraped: 2026-11-17T22:37:31.803591+00:
- 00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/2026-11-18-M
- GR-soff.pdf\nPDF URL: https://lcc.northwestern.edu/mail/2026/flyers/2026-1
- 1-18-MGR-soff.pdf\nPDF SHA256: 78368f43272701ef45aeba56b58089d22e97ce7053d
- 138cf695a5b6081cc82b2\nScraped at: 2026-11-17T22:37:31.803591+00:00
-LOCATION:Northwestern Memorial Hospital\, Feinberg Pavilion\, Conference Ro
- om A\, 251 E. Huron St.\, Chicago
-URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-18-MGR-soff.pdf
-END:VEVENT
-BEGIN:VEVENT
-UID:c83f248d-37f9-5223-ac7d-ab37a3ad3ffc@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
-SEQUENCE:0
-STATUS:CONFIRMED
-DTSTART;TZID=America/Chicago:20261118T130000
-DTEND;TZID=America/Chicago:20261118T140000
-SUMMARY:Lurie Cancer and the Physical Sciences (CAPS) Program: From Signal 
- to Trustworthy Imaging Data: Across the Scales in the AI Era
-DESCRIPTION:From Signal to Trustworthy Imaging Data: Across the Scales in t
- he AI Era\n\nSeries: Cancer and the Physical Sciences (CAPS) Program\nSpea
- ker: Vinayak Dravid\, PhD and THomas Meade\, PhD\, Northwestern University
-  Feinberg School of Medicine\nTopic: From Signal to Trustworthy Imaging Da
- ta: Across the Scales in the AI Era\nTime note: the source lists only a st
- art time\; the end time is an estimate.\nSource: https://lcc.northwestern.
- edu/mail/2026/flyers/2026-11-18-CAPS-DravidMeade.png\nScraped: 2026-11-17T
- 22:37:31.803591+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/
- flyers/2026-11-18-CAPS-DravidMeade.png\nScraped at: 2026-11-17T22:37:31.80
- 3591+00:00
-LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
- icago\, Gray Seminar
-URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-18-CAPS-DravidMea
- de.png
-END:VEVENT
-BEGIN:VEVENT
 UID:2dce1f47-4c15-5916-9b5c-29721ae26dd3@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:2
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261120T090000
@@ -88,12 +38,12 @@ DESCRIPTION:29th Annual Oncology Nursing Conference\n\nSubtitle: Innovation
  al Oncology Nursing Conference\nSource: https://www.cancer.northwestern.ed
  u/events/professional/nursing/index.html\nPDF: https://www.cancer.northwes
  tern.edu/docs/event-docs/2026/nursing2026.pdf\nRegistration: https://lcc.n
- orthwestern.edu/registrations/nursing/\nScraped: 2026-11-17T22:37:31.80359
- 1+00:00\nSource URL: https://www.cancer.northwestern.edu/events/profession
+ orthwestern.edu/registrations/nursing/\nScraped: 2026-11-18T22:18:38.88959
+ 0+00:00\nSource URL: https://www.cancer.northwestern.edu/events/profession
  al/nursing/index.html\nPDF URL: https://www.cancer.northwestern.edu/docs/e
  vent-docs/2026/nursing2026.pdf\nPDF SHA256: 68d73e6bbf747c46b666d0dc18c484
  923cb8e22901f7fc84a5ff0f53e37152ea\nRegistration URL: https://lcc.northwes
- tern.edu/registrations/nursing/\nScraped at: 2026-11-17T22:37:31.803591+00
+ tern.edu/registrations/nursing/\nScraped at: 2026-11-18T22:18:38.889590+00
  :00
 LOCATION:Northwestern Memorial Hospital\, Feinberg Pavilion\, 3rd Floor\, 2
  51 E. Huron St.\, Chicago
@@ -101,9 +51,30 @@ URL:https://www.cancer.northwestern.edu/events/professional/nursing/index.h
  tml
 END:VEVENT
 BEGIN:VEVENT
+UID:03c98e8b-b56b-512f-82de-bcc6d78cddf3@lurie-calendar-feed.github.io
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
+SEQUENCE:0
+STATUS:CONFIRMED
+DTSTART;TZID=America/Chicago:20261120T120000
+DTEND;TZID=America/Chicago:20261120T130000
+SUMMARY:Lurie Center for Physical Genomics and Engineering: Enhancer-Mediat
+ ed Gene Misregulation In Immune Dysfunction
+DESCRIPTION:Enhancer-Mediated Gene Misregulation In Immune Dysfunction\n\nS
+ eries: Center for Physical Genomics and Engineering\nSpeaker: Jay Mahat\, 
+ PhD\, Columbia University\nTopic: Enhancer-Mediated Gene Misregulation In 
+ Immune Dysfunction\nSource: https://planitpurple.northwestern.edu/event/64
+ 8725\nRegistration: https://tinyurl.com/pr5nbkf3\nScraped: 2026-11-18T22:1
+ 8:38.889590+00:00\nSource URL: https://planitpurple.northwestern.edu/event
+ /648725\nRegistration URL: https://tinyurl.com/pr5nbkf3\nScraped at: 2026-
+ 11-18T22:18:38.889590+00:00
+LOCATION:Zoom Meeting
+URL:https://planitpurple.northwestern.edu/event/648725
+END:VEVENT
+BEGIN:VEVENT
 UID:2bec4290-ad6a-5f95-bb87-6b38f0141623@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:2
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261120T120000
@@ -115,12 +86,12 @@ DESCRIPTION:Mechanical Regulation of Cell Extrusion and Macropinocytosis\n\
  sity Feinberg School of Medicine\nTopic: Mechanical Regulation of Cell Ext
  rusion and Macropinocytosis\nSource: https://lcc.northwestern.edu/mail/202
  6/flyers/2026-11-20-TEAM-Mitchell.pdf\nPDF: https://lcc.northwestern.edu/m
- ail/2026/flyers/2026-11-20-TEAM-Mitchell.pdf\nScraped: 2026-11-17T22:37:31
- .803591+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/2
+ ail/2026/flyers/2026-11-20-TEAM-Mitchell.pdf\nScraped: 2026-11-18T22:18:38
+ .889590+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/2
  026-11-20-TEAM-Mitchell.pdf\nPDF URL: https://lcc.northwestern.edu/mail/20
  26/flyers/2026-11-20-TEAM-Mitchell.pdf\nPDF SHA256: c133a6493959f9b039c70c
- c4e77e2984f5db800e3ba84f601ce5528b2a247a58\nScraped at: 2026-11-17T22:37:3
- 1.803591+00:00
+ c4e77e2984f5db800e3ba84f601ce5528b2a247a58\nScraped at: 2026-11-18T22:18:3
+ 8.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Searle Seminar Room
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-20-TEAM-Mitchell.
@@ -128,8 +99,8 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-20-TEAM-Mitchell.
 END:VEVENT
 BEGIN:VEVENT
 UID:7b15d6c9-afc8-5aee-8c5f-1b4d548abcac@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:2
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261123T130000
@@ -142,18 +113,18 @@ DESCRIPTION:Lurie Cancer Center Research-In-Progress Seminar Series\n\nSeri
  : Lurie Cancer Center Research-In-Progress Seminar Series\nSource: https:/
  /lcc.northwestern.edu/mail/2026/flyers/2026-11-23-LCC-RIP.pdf\nPDF: https:
  //lcc.northwestern.edu/mail/2026/flyers/2026-11-23-LCC-RIP.pdf\nScraped: 2
- 026-11-17T22:37:31.803591+00:00\nSource URL: https://lcc.northwestern.edu/
+ 026-11-18T22:18:38.889590+00:00\nSource URL: https://lcc.northwestern.edu/
  mail/2026/flyers/2026-11-23-LCC-RIP.pdf\nPDF URL: https://lcc.northwestern
  .edu/mail/2026/flyers/2026-11-23-LCC-RIP.pdf\nPDF SHA256: af19347eccdc3f36
- 5eb95e3ea03d1c79c02e7cd7951763782f2a44517ecd0708\nScraped at: 2026-11-17T2
- 2:37:31.803591+00:00
+ 5eb95e3ea03d1c79c02e7cd7951763782f2a44517ecd0708\nScraped at: 2026-11-18T2
+ 2:18:38.889590+00:00
 LOCATION:McGaw Pavilion\, 240 E. Huron St\, Kellerman Classroom 2-322
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-23-LCC-RIP.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:076e7d3d-214c-50cd-9b0b-2e45d0264678@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:0
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261130T120000
@@ -167,11 +138,11 @@ DESCRIPTION:Turning Chemoadaptation into Therapeutic Vulnerability: From Be
  Therapeutic Vulnerability: From Bench to Bedside\nSource: https://lcc.nort
  hwestern.edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit.pdf\nPDF: https://
  lcc.northwestern.edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit.pdf\nScrap
- ed: 2026-11-17T22:37:31.803591+00:00\nSource URL: https://lcc.northwestern
+ ed: 2026-11-18T22:18:38.889590+00:00\nSource URL: https://lcc.northwestern
  .edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit.pdf\nPDF URL: https://lcc.
  northwestern.edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit.pdf\nPDF SHA25
- 6: 51b29d1e637c2abdb208137f2819fbb41fb36cd0ecac51ccb5c8eacc24f41cbf\nScrap
- ed at: 2026-11-17T22:37:31.803591+00:00
+ 6: 7619732597f3f1af5f38d5886e41bbc31e491e859c83f679de57cc5fcfeb329d\nScrap
+ ed at: 2026-11-18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit
@@ -179,9 +150,9 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-11-30-GR-Ahmed-Dixit
 END:VEVENT
 BEGIN:VEVENT
 UID:b695110c-7704-50f7-b2d0-5ddfeffb0ac7@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
-SEQUENCE:0
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
+SEQUENCE:1
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261201T150000
 DTEND;TZID=America/Chicago:20261201T160000
@@ -191,17 +162,19 @@ DESCRIPTION:Mitochondrial Dysfunction: Cause or Consequence of Physiologic
  Aging\n\nSeries: Potocsnak Longevity Institute\nSpeaker: Navdeep Chandel\,
   PhD\, Northwestern University Feinberg School of Medicine\nTopic: Mitocho
  ndrial Dysfunction: Cause or Consequence of Physiologic Aging\nSource: htt
- ps://planitpurple.northwestern.edu/event/644583\nScraped: 2026-11-17T22:37
- :31.803591+00:00\nSource URL: https://planitpurple.northwestern.edu/event/
- 644583\nScraped at: 2026-11-17T22:37:31.803591+00:00
+ ps://planitpurple.northwestern.edu/event/644583\nRegistration: https://for
+ ms.cloud.microsoft/r/W1bEz6cYja\nScraped: 2026-11-18T22:18:38.889590+00:00
+ \nSource URL: https://planitpurple.northwestern.edu/event/644583\nRegistra
+ tion URL: https://forms.cloud.microsoft/r/W1bEz6cYja\nScraped at: 2026-11-
+ 18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://planitpurple.northwestern.edu/event/644583
 END:VEVENT
 BEGIN:VEVENT
 UID:8183471e-5129-594d-be6f-3c351070a27f@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:2
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261202T123000
@@ -213,11 +186,11 @@ DESCRIPTION:SDM in the Management of CLL\n\nSeries: Medical Communications
  erg School of Medicine\nTopic: SDM in the Management of CLL\nSource: https
  ://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pdf\nPDF: 
  https://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pdf\n
- Scraped: 2026-11-17T22:37:31.803591+00:00\nSource URL: https://lcc.northwe
+ Scraped: 2026-11-18T22:18:38.889590+00:00\nSource URL: https://lcc.northwe
  stern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pdf\nPDF URL: https://lc
  c.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pdf\nPDF SHA256
  : 8c8854907c91231b8a4a7c2098451d65d49ce831b9fe153bb33446c9582fa5ab\nScrape
- d at: 2026-11-17T22:37:31.803591+00:00
+ d at: 2026-11-18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pd
@@ -225,8 +198,8 @@ URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-02-Paradigm-Ma.pd
 END:VEVENT
 BEGIN:VEVENT
 UID:996cdd45-9eac-55ee-98af-5910a78703c2@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:2
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261203T100000
@@ -239,17 +212,17 @@ DESCRIPTION:Cancer Evolution and Tumor Microenvironment: Insights from Mult
  & Molecular Genetics (BMG)\nSpeaker: De-Chen Lin\, PhD\, University of Sou
  thern California\nTopic: Cancer Evolution and Tumor Microenvironment: Insi
  ghts from Multi-Omic Analysis of Advanced Human Organoid Models\nSource: h
- ttps://planitpurple.northwestern.edu/event/647666\nScraped: 2026-11-17T22:
- 37:31.803591+00:00\nSource URL: https://planitpurple.northwestern.edu/even
- t/647666\nScraped at: 2026-11-17T22:37:31.803591+00:00
+ ttps://planitpurple.northwestern.edu/event/647666\nScraped: 2026-11-18T22:
+ 18:38.889590+00:00\nSource URL: https://planitpurple.northwestern.edu/even
+ t/647666\nScraped at: 2026-11-18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://planitpurple.northwestern.edu/event/647666
 END:VEVENT
 BEGIN:VEVENT
 UID:c4cabaa4-6745-5dcd-ab0e-6d24530be26e@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:0
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261207T120000
@@ -260,19 +233,44 @@ DESCRIPTION:ASH Preview\n\nSeries: Translational Research in Malignancies (
  orthwestern University Feinberg School of Medicine\nTopic: ASH Preview\nSo
  urce: https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07-TRIM-ASH.pd
  f\nPDF: https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07-TRIM-ASH.
- pdf\nScraped: 2026-11-17T22:37:31.803591+00:00\nSource URL: https://lcc.no
+ pdf\nScraped: 2026-11-18T22:18:38.889590+00:00\nSource URL: https://lcc.no
  rthwestern.edu/mail/2026/flyers/2026-12-07-TRIM-ASH.pdf\nPDF URL: https://
  lcc.northwestern.edu/mail/2026/flyers/2026-12-07-TRIM-ASH.pdf\nPDF SHA256:
   2feb7b04be48c83654dfef4cdecef93d251663b13802a3283fa81002a2a837c6\nScraped
-  at: 2026-11-17T22:37:31.803591+00:00
+  at: 2026-11-18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07-TRIM-ASH.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:594cc405-aeb0-5db2-b7d8-89cd6fabe1c5@lurie-calendar-feed.github.io
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
+SEQUENCE:0
+STATUS:CONFIRMED
+DTSTART;TZID=America/Chicago:20261207T130000
+DTEND;TZID=America/Chicago:20261207T140000
+SUMMARY:Lurie Seminar: Peter Faull\, PhD - The Proteomics Core: Mass Spectr
+ ometry Capabilities at Northwestern University
+DESCRIPTION:The Proteomics Core: Mass Spectrometry Capabilities at Northwes
+ tern University\n\nSeries: Lurie Cancer Center Core Technologies & Applica
+ tions Seminar\nSpeaker: Peter Faull\, PhD\, Northwestern University Feinbe
+ rg School of Medicine\nTopic: The Proteomics Core: Mass Spectrometry Capab
+ ilities at Northwestern University\nSource: https://lcc.northwestern.edu/m
+ ail/2026/flyers/2026-12-07-Core.pdf\nPDF: https://lcc.northwestern.edu/mai
+ l/2026/flyers/2026-12-07-Core.pdf\nScraped: 2026-11-18T22:18:38.889590+00:
+ 00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07-C
+ ore.pdf\nPDF URL: https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07
+ -Core.pdf\nPDF SHA256: 67a6bd6b1d247e533bf37e9629c1ff878ba80bfdb7fb31fe38e
+ abcbf380108ff\nScraped at: 2026-11-18T22:18:38.889590+00:00
+LOCATION:Simpson Querrey Biomedical Research Center\, 303 E. Superior St.\,
+  Chicago\, SQBRC Auditorium
+URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-07-Core.pdf
+END:VEVENT
+BEGIN:VEVENT
 UID:ea1bf590-63b4-5f26-b57d-263bfc1f8ce4@lurie-calendar-feed.github.io
-DTSTAMP:20261117T223731Z
-LAST-MODIFIED:20261117T223731Z
+DTSTAMP:20261118T221838Z
+LAST-MODIFIED:20261118T221838Z
 SEQUENCE:0
 STATUS:CONFIRMED
 DTSTART;TZID=America/Chicago:20261214T120000
@@ -283,11 +281,11 @@ DESCRIPTION:Current Progress in RCC and Ongoing Research\n\nSeries: Lurie C
  \, MPH\, Northwestern University Feinberg School of Medicine\nTopic: Curre
  nt Progress in RCC and Ongoing Research\nSource: https://lcc.northwestern.
  edu/mail/2026/flyers/2026-12-14-GR-Liu.pdf\nPDF: https://lcc.northwestern.
- edu/mail/2026/flyers/2026-12-14-GR-Liu.pdf\nScraped: 2026-11-17T22:37:31.8
- 03591+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/202
+ edu/mail/2026/flyers/2026-12-14-GR-Liu.pdf\nScraped: 2026-11-18T22:18:38.8
+ 89590+00:00\nSource URL: https://lcc.northwestern.edu/mail/2026/flyers/202
  6-12-14-GR-Liu.pdf\nPDF URL: https://lcc.northwestern.edu/mail/2026/flyers
  /2026-12-14-GR-Liu.pdf\nPDF SHA256: 2180252195e8b14c0bfe542cc666cd20a2376d
- 819a08005b4878e1474f9dc06d\nScraped at: 2026-11-17T22:37:31.803591+00:00
+ 819a08005b4878e1474f9dc06d\nScraped at: 2026-11-18T22:18:38.889590+00:00
 LOCATION:Robert H. Lurie Medical Research Center\, 303 E. Superior St.\, Ch
  icago\, Baldwin Auditorium
 URL:https://lcc.northwestern.edu/mail/2026/flyers/2026-12-14-GR-Liu.pdf
