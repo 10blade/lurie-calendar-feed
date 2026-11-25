@@ -1,6 +1,6 @@
 # Lurie calendar scraper run
 
-- Run time: 2026-11-24T23:37:04.064547+00:00
+- Run time: 2026-11-25T23:16:11.536329+00:00
 - Discovered event links: 27
 - Published events: 10
 - Review required: 2
