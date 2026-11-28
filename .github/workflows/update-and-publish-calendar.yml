@@ -98,6 +98,7 @@ jobs:
           enablement: true
 
       - name: Upload Pages artifact
+        id: pages_upload
         if: steps.schedule_gate.outputs.should_run == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
@@ -105,7 +106,46 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: steps.schedule_gate.outputs.should_run == 'true'
-        uses: actions/deploy-pages@v4
+        uses: actions/github-script@v8
+        env:
+          PAGES_ARTIFACT_ID: ${{ steps.pages_upload.outputs.artifact_id }}
+        with:
+          retries: 3
+          script: |
+            // The upload returns its ID before the artifact is always visible in a list by name.
+            const artifactId = Number(process.env.PAGES_ARTIFACT_ID);
+            if (!Number.isSafeInteger(artifactId) || artifactId <= 0) {
+              throw new Error("Pages upload did not return a valid artifact ID.");
+            }
+            const route = "/repos/{owner}/{repo}/pages/deployments";
+            const { data: deployment } = await github.request(`POST ${route}`, {
+              ...context.repo,
+              artifact_id: artifactId,
+              pages_build_version: context.sha,
+              oidc_token: await core.getIDToken(),
+              request: { retries: 0 }
+            });
+            core.info(`Deploying artifact ${artifactId} to ${deployment.page_url}`);
+
+            const params = { ...context.repo, deployment_id: deployment.id };
+            const statusRoute = `${route}/{deployment_id}`;
+            const failed = new Set([
+              "deployment_failed", "deployment_content_failed", "deployment_cancelled", "deployment_lost"
+            ]);
+            const deadline = Date.now() + 10 * 60_000;
+            while (Date.now() < deadline) {
+              await new Promise(resolve => setTimeout(resolve, 5000));
+              const { data } = await github.request(`GET ${statusRoute}`, params);
+              if (data.status === "succeed") {
+                core.info(`Published ${deployment.page_url}`);
+                return;
+              }
+              if (failed.has(data.status)) {
+                throw new Error(`Pages deployment ${deployment.id} ended with ${data.status}.`);
+              }
+            }
+            await github.request(`POST ${statusRoute}/cancel`, params);
+            throw new Error(`Pages deployment ${deployment.id} timed out.`);
 
       - name: Upload parser artifacts on failure
         if: failure() && steps.schedule_gate.outputs.should_run == 'true'
